@@ -173,6 +173,9 @@ class algorithm:
 
 #######################################################################################################
 #######################################################################################################
+
+#Interface with Streamlit
+
 #######################################################################################################
 #######################################################################################################
 
@@ -191,7 +194,10 @@ final_destination = ""
 lost_Data = pd.DataFrame()
 
 st.write("""## 🧶Description
-Hallo hier kommt eine riesen zummenfassung hin die alles erklälrt! check out this [link](https://docs.google.com/forms/d/e/1FAIpQLSe01mkoWCHgOh7kSNHZ28DHL5xgaDFEMwfrMjqGQxkX8vt70w/viewform?usp=sf_link)""")
+Hallo hier kommt eine riesen zummenfassung hin die alles erklälrt! check out this [Survey Link](https://docs.google.com/forms/d/e/1FAIpQLSe01mkoWCHgOh7kSNHZ28DHL5xgaDFEMwfrMjqGQxkX8vt70w/viewform?usp=sf_link)
+
+To clear old event, clear this spreadsheet! ➡️ [spreadsheet](https://docs.google.com/spreadsheets/d/1C1Q7QQ8ZVhCP1ShHdmds6N2kxr1BX8RUqCeNnt4JEPk/edit?usp=sharing)
+""")
 
 
 st.write("""### Final Destination:""")

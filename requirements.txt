@@ -1,2 +1,2 @@
 google_auth_oauthlib
-googleapiclient.discovery
+googleapiclient

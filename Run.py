@@ -192,7 +192,7 @@ final_destination = ""
 lost_Data = pd.DataFrame()
 
 st.write("""## Description
-Hallo hier kommt eine riesen zummenfassung hin die alles erklälrt! check out this [link](google.de)""")
+Hallo hier kommt eine riesen zummenfassung hin die alles erklälrt! check out this [link](https://google.de)""")
 link='check out this [link](https://retailscope.africa/)'
 st.markdown(link,unsafe_allow_html=True)
 

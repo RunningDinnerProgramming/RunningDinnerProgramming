@@ -1,3 +1,6 @@
+streamlit==0.81.0
+numpy==1.20.2
+pandas==1.2.4
 streamlit
 pandas
 pickle
@@ -9,4 +12,4 @@ geopy.geocoders
 geopy.distance
 random
 smtplib
-email.message
+email.message

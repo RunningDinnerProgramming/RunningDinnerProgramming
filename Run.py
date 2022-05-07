@@ -20,7 +20,7 @@ from googleapiclient.discovery import build
 
 from geopy.geocoders import Nominatim
 from geopy.distance import great_circle
-from ipyleaflet import Map, basemaps, basemap_to_tiles, Marker
+#from ipyleaflet import Map, basemaps, basemap_to_tiles, Marker
 import random
 
 import smtplib

@@ -228,12 +228,15 @@ else:
     else:
         output1=output1
 
-    output1 = output1.drop(columns=["Zeitstempel","TeamID"])
+    
     
     output1 = output1.reindex(columns=["FinalTeam", "Name", "Address", "E-Mail", "Phonenumber", "Name Teammember", "E-Mail Partner", "Phonenumber Partner", "Food choice","latitude","longitude","distance","Group"])
     output1["FinalTeam"] = output1["FinalTeam"].astype(int)
     output1["Group"] = output1["Group"].astype(int)
-    output1.loc[output1['Group'] == 1,"Menu"] = "Vorspeise"
+    output1.loc[output1['Group'] == 1,"Menu"] = "Appetizer"
+    output1.loc[output1['Group'] == 2,"Menu"] = "Main Course"
+    output1.loc[output1['Group'] == 3,"Menu"] = "Dessert"
+    output1 = output1.drop(columns=["Zeitstempel","TeamID","Group"])
     
     all_teams=["All"]
     final_team = list(output1["FinalTeam"].unique())

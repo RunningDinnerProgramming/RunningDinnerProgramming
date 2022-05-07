@@ -234,9 +234,9 @@ else:
     output1["FinalTeam"] = output1["FinalTeam"].astype(int)
     output1["Group"] = output1["Group"].astype(int)
     
-    if  output1.loc[output1['Group']] == 1:
+    if  output1[output1['Group']] == 1:
         output1.loc[output1['Group'] == 1] = "Appetizer"
-    elif output1.loc[output1['Group']] == 2:
+    elif output1[output1['Group']] == 2:
         output1.loc[output1['Group'] == 2] = "Main Course"
     else:
         output1.loc[output1['Group'] == 3] = "Dessert"

@@ -1,15 +1,2 @@
 streamlit==0.81.0
-numpy==1.20.2
 pandas==1.2.4
-streamlit
-pandas
-pickle
-os.path
-google_auth_oauthlib.flow
-google.auth.transport.requests
-googleapiclient.discovery
-geopy.geocoders
-geopy.distance
-random
-smtplib
-email.message

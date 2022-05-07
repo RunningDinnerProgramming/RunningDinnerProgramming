@@ -195,7 +195,7 @@ Hallo hier kommt eine riesen zummenfassung hin die alles erklälrt! check out th
 
 
 st.write("""### Final Destination:""")
-final_destination = st.text_input('Please put here the streetname + housenumber + city (ex.: Rua do Forno do Tijolo 29D Lisboa)')
+final_destination = st.text_input('Please enter your streetname, housenumber and city (KEEP THE FORMAT LIKE THIS EXAMPLE - Rua do Forno do Tijolo 29D Lisboa)')
 st.write('The Final location is:', final_destination)
 
 

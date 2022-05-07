@@ -234,14 +234,19 @@ else:
     output1["FinalTeam"] = output1["FinalTeam"].astype(int)
     output1["Group"] = output1["Group"].astype(int)
     
-    if  output1[output1['Group']] == 1:
-        output1.loc[output1['Group'] == 1] = "Appetizer"
-    elif output1[output1['Group']] == 2:
-        output1.loc[output1['Group'] == 2] = "Main Course"
-    else:
-        output1.loc[output1['Group'] == 3] 
+    u=0
+    food_menu = list(output1["Group"])
+    for i in food_menu:
+        if i==1:
+            food_menu[u] = "Appetizer"
+        elif i==2:
+            food_menu[u] = "Main Course"
+        else:
+            food_menu[u] = "Dessert"
+        u+=1
         
-    output1 = output1.drop(columns=["Zeitstempel","TeamID"])
+    output1["Menu"] = food_menu
+    output1 = output1.drop(columns=["Zeitstempel","TeamID","Group"])
     
     all_teams=["All"]
     final_team = list(output1["FinalTeam"].unique())

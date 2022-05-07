@@ -227,7 +227,8 @@ else:
         output1 = output1.iloc[:-1 , :]
     else:
         output1=output1
-
+        
+    #connect Food Menu to Group ID 1, 2 or 3
     u=0
     food_menu = list(output1["Group"])
     for i in food_menu:
@@ -238,15 +239,15 @@ else:
         else:
             food_menu[u] = "Appetizer"
         u+=1
-        
     output1["Menu"] = food_menu
-        
+    
+    #clean dataset
     output1 = output1.drop(columns=["Zeitstempel","TeamID","Group"])
     
     output1 = output1.reindex(columns=["FinalTeam","Menu", "Name", "Address", "E-Mail", "Phonenumber", "Name Teammember", "E-Mail Partner", "Phonenumber Partner", "Food choice","latitude","longitude","distance"])
     output1["FinalTeam"] = output1["FinalTeam"].astype(int)
-    #output1["Group"] = output1["Group"].astype(int)
     
+    #build drop down box
     all_teams=["All"]
     final_team = list(output1["FinalTeam"].unique())
                         
@@ -256,14 +257,11 @@ else:
     final_team_choice = st.sidebar.selectbox('Teams:', all_teams)
     st.sidebar.write('You selected Team:', final_team_choice)
                         
-                       
-    
-
+    #code if select all teams
     if final_team_choice == "All":
 
         output = output1
-              
-        #st.session_state = output
+          
         st.write("""### Data Import:""")
         hide_dataframe_row_index = """
                                         <style>
@@ -307,8 +305,9 @@ else:
             
             lost_Data = lost_Data.drop(columns=["Zeitstempel","latitude", "longitude","distance","TeamID","Group","FinalTeam"])
             st.dataframe(lost_Data)
-                                    
-                                
+     
+    
+    #code if select specific team                          
     else:
 
         output = output1
@@ -343,7 +342,6 @@ else:
         #get teams that submitted to late
         if lost_Data.empty == False:
             st.write("""### Lost Data:""")
-            #st.session_state = output
             hide_dataframe_row_index = """
                                             <style>
                                             .row_heading.level0 {display:none}
@@ -369,9 +367,10 @@ else:
     team = list(output1["FinalTeam"])
     
     if st.sidebar.button('Send E-Mail'):
-
-        sent_from = 'introtorunningprogramming@gmail.com'
-        password = 'JoJuMaPa351'
+        sent_from = st.sidebar.text_input('Please put here your E-Mail:')
+        password = st.text_input('Please put here your E-Mail:')
+        #sent_from = 'introtorunningprogramming@gmail.com'
+        #password = 'JoJuMaPa351'
 
         for name,teamname,email,team in zip(name1,name2,email,team):
             msg = EmailMessage()

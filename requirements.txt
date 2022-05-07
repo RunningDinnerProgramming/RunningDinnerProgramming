@@ -1,0 +1,12 @@
+streamlit
+pandas
+pickle
+os.path
+google_auth_oauthlib.flow
+google.auth.transport.requests
+googleapiclient.discovery
+geopy.geocoders
+geopy.distance
+random
+smtplib
+email.message

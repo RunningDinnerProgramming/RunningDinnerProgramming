@@ -192,9 +192,8 @@ final_destination = ""
 lost_Data = pd.DataFrame()
 
 st.write("""## Description
-Hallo hier kommt eine riesen zummenfassung hin die alles erklälrt! check out this [link](https://google.de)""")
-link='check out this [link](https://retailscope.africa/)'
-st.markdown(link,unsafe_allow_html=True)
+Hallo hier kommt eine riesen zummenfassung hin die alles erklälrt! check out this [link](https://drive.google.com/open?id=1XJLncsSKSjQmVaCEWA8SOk9TKTHqmDSQL50_EDNTHdQ&authuser=0&usp=forms_home&ths=true)""")
+
 
 st.write("""### Final Destination:""")
 final_destination = st.text_input('Please put here the streetname + housenumber + city (ex.: Rua do Forno do Tijolo 29D Lisboa)')

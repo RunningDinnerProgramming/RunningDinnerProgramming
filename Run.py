@@ -372,7 +372,7 @@ else:
     email = list(output1["E-Mail"])
     team = list(output1["FinalTeam"])
     
-    sent_from = st.sidebar.text_input('Please put here your E-Mail (ex.: introtorunningprogramming@gmail.com):')
+    sent_from = st.sidebar.text_input('Please put here your Gmail (ex.: introtorunningprogramming@gmail.com):')
     password = st.sidebar.text_input('Please put here your Password (ex.: JoJuMaPa351):')
     
     st.sidebar.write("Click to send emails to all teams.")

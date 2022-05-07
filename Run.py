@@ -214,7 +214,7 @@ else:
     
     if st.button('Import'):
         output2 = algo.team()
-        file = output2.to_json("/Users/marcoschmiederer/Desktop/RunningDinner/data_json.json")
+        file = output2.to_json("data_json.json")
         st.write("Data is up to date!")
     else:
         st.write("Data is not up to date!")

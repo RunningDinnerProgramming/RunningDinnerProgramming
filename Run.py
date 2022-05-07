@@ -20,7 +20,6 @@ from googleapiclient.discovery import build
 
 from geopy.geocoders import Nominatim
 from geopy.distance import great_circle
-#from ipyleaflet import Map, basemaps, basemap_to_tiles, Marker
 import random
 
 import smtplib
@@ -192,7 +191,7 @@ final_destination = ""
 lost_Data = pd.DataFrame()
 
 st.write("""## Description
-Hallo hier kommt eine riesen zummenfassung hin die alles erklälrt! check out this [link](https://drive.google.com/open?id=1XJLncsSKSjQmVaCEWA8SOk9TKTHqmDSQL50_EDNTHdQ&authuser=0&usp=forms_home&ths=true)""")
+Hallo hier kommt eine riesen zummenfassung hin die alles erklälrt! check out this [link](https://docs.google.com/forms/d/e/1FAIpQLSe01mkoWCHgOh7kSNHZ28DHL5xgaDFEMwfrMjqGQxkX8vt70w/viewform?usp=sf_link)""")
 
 
 st.write("""### Final Destination:""")

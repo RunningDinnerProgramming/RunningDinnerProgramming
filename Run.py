@@ -299,7 +299,7 @@ else:
         
         #get teams that submitted to late
         if lost_Data.empty == False:
-            st.write("""### Late Submitters:""")
+            st.write("""### Wait List:""")
             #st.session_state = output
             hide_dataframe_row_index = """
                                             <style>
@@ -349,7 +349,7 @@ else:
         
         #get teams that submitted to late
         if lost_Data.empty == False:
-            st.write("""### Late Submitters:""")
+            st.write("""### Wait List:""")
             hide_dataframe_row_index = """
                                             <style>
                                             .row_heading.level0 {display:none}

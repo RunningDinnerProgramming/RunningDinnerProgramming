@@ -371,23 +371,22 @@ else:
     password = st.sidebar.text_input('Please put here your Password (ex.: JoJuMaPa351):')
     
     if st.sidebar.button('Send E-Mail'):
-       
-        #sent_from = 'introtorunningprogramming@gmail.com'
-        #password = 'JoJuMaPa351'
+        if sent_from == "" or password == "":
+            st.sidebar.write("E-Mail or Password is missing!")
+        else:
+            for name,teamname,email,team in zip(name1,name2,email,team):
+                msg = EmailMessage()
+                msg.set_content(f'This is my message for {name} and {teamname}. You are in team {team}')
 
-        for name,teamname,email,team in zip(name1,name2,email,team):
-            msg = EmailMessage()
-            msg.set_content(f'This is my message for {name} and {teamname}. You are in team {team}')
+                msg['Subject'] = 'This is just a test for running dinner'
+                msg['From'] = sent_from
+                msg['To'] = email
 
-            msg['Subject'] = 'This is just a test for running dinner'
-            msg['From'] = sent_from
-            msg['To'] = email
-
-            # Send the message via our own SMTP server.
-            server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
-            server.login(sent_from, password)
-            server.send_message(msg)
-            server.quit()
+                # Send the message via our own SMTP server.
+                server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
+                server.login(sent_from, password)
+                server.send_message(msg)
+                server.quit()
 
         
         

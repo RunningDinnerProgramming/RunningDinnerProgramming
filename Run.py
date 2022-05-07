@@ -388,7 +388,7 @@ else:
                 server.send_message(msg)
                 server.quit()
 
-        
+            st.sidebar.write("E-Mail send out successfully!")
         
 
 

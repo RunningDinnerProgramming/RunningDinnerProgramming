@@ -1,3 +1,4 @@
 streamlit==0.81.0
 pandas==1.2.4
 google_auth_oauthlib
+googleapiclient

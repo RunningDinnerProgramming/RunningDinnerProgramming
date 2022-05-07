@@ -1,9 +1,8 @@
-streamlit
-pandas
-google_auth_oauthlib
-google.auth
-googleapiclient
-geopy
-random
-smtplib
-email
+streamlit==1.6
+pandas==1.2.5
+google_auth_oauthlib==0.5.1
+google.auth==2.6.6
+geopy==2.2.0
+random==1.0.1
+smtplib==0.1.1
+email==0.5.3

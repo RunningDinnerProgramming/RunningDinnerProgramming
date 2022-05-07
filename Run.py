@@ -219,7 +219,7 @@ else:
     else:
         st.write("Data is not up to date!")
 
-    output1 = pd.read_json("/Users/marcoschmiederer/Desktop/RunningDinner/data_json.json")
+    output1 = pd.read_json("data_json.json")
     
     if len(output1) % 3 == 2:
         lost_Data = output1.tail(2)

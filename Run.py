@@ -232,11 +232,11 @@ else:
     food_menu = list(output1["Group"])
     for i in food_menu:
         if i==1:
-            food_menu[u] = "Appetizer"
+            food_menu[u] = "Dessert"
         elif i==2:
             food_menu[u] = "Main Course"
         else:
-            food_menu[u] = "Dessert"
+            food_menu[u] = "Appetizer"
         u+=1
         
     output1["Menu"] = food_menu

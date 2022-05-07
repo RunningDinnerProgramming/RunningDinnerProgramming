@@ -235,11 +235,11 @@ else:
     output1["Group"] = output1["Group"].astype(int)
     
     if  output1[output1['Group']] == 1:
-        output1['Group'] = "Appetizer"
+        output1[output1['Group']] = "Appetizer"
     elif output1[output1['Group']] == 2:
-        output1['Group'] = "Main Course"
+        output1[output1['Group']] = "Main Course"
     else:
-        output1['Group'] = "Dessert"
+        output1[output1['Group']] = "Dessert"
     #output1.loc[output1['Group'] == 3]    
     output1 = output1.drop(columns=["Zeitstempel","TeamID"])
     

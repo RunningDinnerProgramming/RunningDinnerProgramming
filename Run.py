@@ -192,7 +192,9 @@ final_destination = ""
 lost_Data = pd.DataFrame()
 
 st.write("""## Description
-Hallo hier kommt eine riesen zummenfassung hin die alles erklälrt""")
+Hallo hier kommt eine riesen zummenfassung hin die alles erklälrt! check out this [link](google.de)""")
+link='check out this [link](https://retailscope.africa/)'
+st.markdown(link,unsafe_allow_html=True)
 
 st.write("""### Final Destination:""")
 final_destination = st.text_input('Please put here the streetname + housenumber + city (ex.: Rua do Forno do Tijolo 29D Lisboa)')
@@ -204,8 +206,6 @@ st.write('The Final location is:', final_destination)
 algo = algorithm(SCOPES,SPREADSHEET_ID,DATA_TO_PULL,final_destination)
 
 st.sidebar.subheader(' Quick  Explore')
-st.sidebar.write(st.write("check out this [link](google.de)"))
-
 
 if final_destination == "":
     st.sidebar.write("In oder to import data please make sure to insert a start location!")
@@ -250,8 +250,7 @@ else:
     if final_team_choice == "All":
 
         output = output1
-        
-        
+              
         #st.session_state = output
         st.write("""### Data Import:""")
         hide_dataframe_row_index = """

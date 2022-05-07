@@ -356,19 +356,18 @@ else:
             st.dataframe(lost_Data)
 
  
-
+    #E-Mail Server
     st.sidebar.subheader("E-Mail")
-    
-    st.sidebar.write("click to send emails to all participants")
     
     name1 = list(output1["Name"])
     name2 = list(output1["Name Teammember"])
     email = list(output1["E-Mail"])
     team = list(output1["FinalTeam"])
     
-    #E-Mail server
     sent_from = st.sidebar.text_input('Please put here your E-Mail (ex.: introtorunningprogramming@gmail.com):')
     password = st.sidebar.text_input('Please put here your Password (ex.: JoJuMaPa351):')
+    
+    st.sidebar.write("click to send emails to all teams")
     
     if st.sidebar.button('Send E-Mail'):
         if sent_from == "" or password == "":

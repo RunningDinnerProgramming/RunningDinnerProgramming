@@ -233,9 +233,13 @@ else:
     output1 = output1.reindex(columns=["FinalTeam", "Name", "Address", "E-Mail", "Phonenumber", "Name Teammember", "E-Mail Partner", "Phonenumber Partner", "Food choice","latitude","longitude","distance","Group"])
     output1["FinalTeam"] = output1["FinalTeam"].astype(int)
     output1["Group"] = output1["Group"].astype(int)
-    output1.loc[output1['Group'] == 1] = "Appetizer"
-    output1.loc[output1['Group'] == 2] = "Main Course"
-    output1.loc[output1['Group'] == 3] = "Dessert"
+    if  output1['Group'] == 1:
+        output1.loc[output1['Group'] == 1] = "Appetizer"
+    elif output1['Group'] == 2:
+        output1.loc[output1['Group'] == 2] = "Main Course"
+    else:
+        output1.loc[output1['Group'] == 3] = "Dessert"
+        
     output1 = output1.drop(columns=["Zeitstempel","TeamID"])
     
     all_teams=["All"]

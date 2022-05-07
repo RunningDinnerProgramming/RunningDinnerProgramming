@@ -3,5 +3,3 @@ pandas==1.2.5
 google_auth_oauthlib==0.5.1
 google.auth==2.6.6
 geopy==2.2.0
-smtplib
-email

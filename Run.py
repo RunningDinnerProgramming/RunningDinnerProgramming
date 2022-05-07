@@ -283,7 +283,7 @@ else:
 
 
         #count food preference
-        st.subheader("Average Distance")
+        st.subheader("Food Choices")
         
         output_count = output.groupby("Food choice")["FinalTeam"].count()
         st.bar_chart(output_count)
@@ -333,7 +333,7 @@ else:
 
 
         #count food preference
-        st.subheader("Average Distance")
+        st.subheader("Food Choices")
         
         data_count = data.groupby("Food choice")["FinalTeam"].count()
         st.bar_chart(data_count)

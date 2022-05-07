@@ -367,7 +367,7 @@ else:
     sent_from = st.sidebar.text_input('Please put here your E-Mail (ex.: introtorunningprogramming@gmail.com):')
     password = st.sidebar.text_input('Please put here your Password (ex.: JoJuMaPa351):')
     
-    st.sidebar.write("Click to send emails to all teams")
+    st.sidebar.write("Click to send emails to all teams.")
     
     if st.sidebar.button('Send E-Mail'):
         if sent_from == "" or password == "":

@@ -228,9 +228,9 @@ else:
     else:
         output1=output1
 
-    output1 = output1.drop(columns=["Zeitstempel","TeamID","Group"])
+    output1 = output1.drop(columns=["Zeitstempel","TeamID"])
     
-    output1 = output1.reindex(columns=["FinalTeam", "Name", "Address", "E-Mail", "Phonenumber", "Name Teammember", "E-Mail Partner", "Phonenumber Partner", "Food choice","latitude","longitude","distance"])
+    output1 = output1.reindex(columns=["FinalTeam", "Name", "Address", "E-Mail", "Phonenumber", "Name Teammember", "E-Mail Partner", "Phonenumber Partner", "Food choice","latitude","longitude","distance","Group"])
     output1["FinalTeam"] = output1["FinalTeam"].astype(int)
     
     all_teams=["All"]

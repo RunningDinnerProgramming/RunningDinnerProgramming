@@ -1,4 +1,9 @@
-streamlit==22.0.4
-pandas==1.4.2
+streamlit
+pandas
 google_auth_oauthlib
+google.auth
 googleapiclient
+geopy
+random
+smtplib
+email

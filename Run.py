@@ -366,8 +366,9 @@ else:
     email = list(output1["E-Mail"])
     team = list(output1["FinalTeam"])
     
+    #E-Mail server
     sent_from = st.sidebar.text_input('Please put here your E-Mail (ex.: introtorunningprogramming@gmail.com):')
-    password = st.sidebar.text_input('Please put here your E-Mail(ex.: JoJuMaPa351):')
+    password = st.sidebar.text_input('Please put here your Password (ex.: JoJuMaPa351):')
     
     if st.sidebar.button('Send E-Mail'):
        

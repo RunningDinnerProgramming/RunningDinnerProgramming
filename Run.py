@@ -367,7 +367,7 @@ else:
     #E-Mail Server
     st.sidebar.subheader("E-Mail")
     
-    team = list(output1["FinalTeam"].unique())
+    team = list(pd.unique(output1["FinalTeam"]))
     email_dict = {}
     for teams in team:
         email_dict[teams] = 1

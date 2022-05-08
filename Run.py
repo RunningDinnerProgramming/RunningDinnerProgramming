@@ -371,7 +371,7 @@ else:
     email_dict = {}
     for teams in email_team:
         teams = str(teams)
-        email_dict[teams]["Appetizer"]["Teammember1"] = output1[output1["FinalTeam"] == teams & output1["Menu"] == "Appetizer"]
+        email_dict[teams]["Appetizer"]["Teammember1"] = output1[output1["FinalTeam"] == teams and output1["Menu"] == "Appetizer"]
     st.write(email_dict)
     
     

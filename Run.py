@@ -366,12 +366,14 @@ else:
  
     #E-Mail Server
     st.sidebar.subheader("E-Mail")
-    
+    """
     name1_app = list(output1[output1["Menu"] == "Appetizer"]["Name"])
     name2_app = list(output1[output1["Menu"] == "Appetizer"]["Name Teammember"])
     phone_app = list(output1[output1["Menu"] == "Appetizer"]["Name"])
     email = list(output1["E-Mail"])
     team = list(output1["FinalTeam"])
+    """
+                                
     
     st.write(name1_app)
     st.write(name2_app)
@@ -385,32 +387,36 @@ else:
         if sent_from == "" or password == "":
             st.sidebar.write("E-Mail or Password is missing!")
         else:
-            for name,teamname,email,team in zip(name1,name2,email,team):
+            var = 1
+            number_teams = len(output1)/3
+            for var in range(1,number_teams+1)
+                team_df = output1[output1["FinalTeam] == var]
+                                          
                 msg = EmailMessage()
-                msg.set_content(f"""Hello Group,
+                msg.set_content(f"""Hello {team_df["FinalTeam"].iloc[[0]]},
                                 \n 
                                 Thank you for participating in this Running Dinner. This is your group composition: 
                                 \n\n 
                                 1. Appetizer: 
-                                \n Teammember1: 
-                                \n Teammember2: 
-                                \n Street: 
-                                \n Phone Number: 
-                                \n Food Preferences: 
+                                \n Teammember1: {team_df["Name"].iloc[[0]]}
+                                \n Teammember2: {team_df["Name Teammember"].iloc[[0]]}
+                                \n Address: {team_df["Address"].iloc[[0]]}
+                                \n Phone Number: {team_df["Phonenumber"].iloc[[0]]}
+                                \n Food Preferences: {team_df["Food Choice"].iloc[[0]]}
                                 \n
                                 2. Main Course: 
-                                \n Teammember1: 
-                                \n Teammember2: 
-                                \n Street: 
-                                \n Phone Number: 
-                                \n Food Preferences: 
+                                \n Teammember1: {team_df["Name"].iloc[[1]]}
+                                \n Teammember2: {team_df["Name Teammember"].iloc[[1]]}
+                                \n Address: {team_df["Address"].iloc[[1]]}
+                                \n Phone Number: {team_df["Phonenumber"].iloc[[1]]}
+                                \n Food Preferences: {team_df["Food Choice"].iloc[[1]]}
                                 \n
                                 3. Dessert: 
-                                \n Teammember1: 
-                                \n Teammember2: 
-                                \n Street: 
-                                \n Phone Number: 
-                                \n Food Preferences: 
+                                \n Teammember1: {team_df["Name"].iloc[[2]]}
+                                \n Teammember2: {team_df["Name Teammember"].iloc[[2]]}
+                                \n Address: {team_df["Address"].iloc[[2]]}
+                                \n Phone Number: {team_df["Phonenumber"].iloc[[2]]}
+                                \n Food Preferences: {team_df["Food Choice"].iloc[[2]]}
                                 \n\n
                                 Have a good night and we see each other all toghether at {final_destination}!
                                 \n
@@ -423,7 +429,7 @@ else:
 
                 msg['Subject'] = 'Running Dinner Information'
                 msg['From'] = sent_from
-                msg['To'] = email
+                msg['To'] = [team_df["E-Mail"].iloc[[0]],team_df["E-Mail"].iloc[[1]],team_df["E-Mail"].iloc[[2]]
 
                 # Send the message via our own SMTP server.
                 server = smtplib.SMTP_SSL('smtp.gmail.com', 465)

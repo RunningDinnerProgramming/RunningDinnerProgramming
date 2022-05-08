@@ -145,6 +145,13 @@ class algorithm:
         else:
             dataT=dataT
         """     
+        
+        wrong = dataT[(dataT["latitude"] == -89.9999) & (dataT["longitude"] == -179.9999)]
+        if wrong.shape[0] != 0:
+            wrong_address = dataT[(dataT["latitude"] == -89.9999) & (dataT["longitude"] == -179.9999)]
+            dataT = dataT.drop(dataT[(dataT["latitude"] == -89.9999) & (dataT["longitude"] == -179.9999)].index)
+        
+        
         #filter out the teams that are to much
         lostData = pd.DataFrame()
         

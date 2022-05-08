@@ -108,12 +108,13 @@ class algorithm:
         #get latitude and longitude from a team and calculate distance to center of map
         for key, item in data.items():
             end_location =data[key]["Address"]
-            end_location_code = geolocator.geocode(end_location)
-            if end_location_code.latitude == None:
+            #end_location_code = geolocator.geocode(end_location)
+            if geolocator.geocode(end_location) == None:
                 data[key]["latitude"] = -90
                 data[key]["longitude"] = -180
                 data[key]["distance"] = distance
             else:
+                end_location_code = geolocator.geocode(end_location)
                 end_location_lat_long = (end_location_code.latitude,end_location_code.longitude)
                 distance = (great_circle(algorithm.start(self), end_location_lat_long).miles)*kilometer_miles
                 data[key]["latitude"] = end_location_lat_long[0]

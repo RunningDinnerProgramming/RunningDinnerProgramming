@@ -244,10 +244,8 @@ else:
         st.write("Data is not up to date!")
 
     output1 = pd.read_json("data_json.json")
-    
+    st.write(output1)
     #filter out wrong address entries
-    wrong_address = output1[(output1["latitude"] == -79.9999) & (output1["longitude"] == 179.9999)]
-    st.write(wrong_address)
     if output1[(output1["latitude"] == -79.9999) & (output1["longitude"] == 179.9999)].shape[0] != 0:
         wrong_address = output1[(output1["latitude"] == -79.9999) & (output1["longitude"] == 179.9999)]
         output1 = output1.drop(output1[(output1["latitude"] == -79.9999) & (output1["longitude"] == 179.9999)].index)

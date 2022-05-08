@@ -136,7 +136,7 @@ class algorithm:
         dataT = algorithm.geo(self)
    
         #filter out wrong address entries
-        wrong_address = pd.DataFrame()
+        #wrong_address = pd.DataFrame()
         wrong_address = dataT[(dataT["latitude"] == -79.9999) & (dataT["longitude"] == 179.9999)]
 
         if wrong_address.shape[0] != 0:

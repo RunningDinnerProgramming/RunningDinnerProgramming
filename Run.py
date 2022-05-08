@@ -367,15 +367,7 @@ else:
     #E-Mail Server
     st.sidebar.subheader("E-Mail")
     
-    email_team = list(output1["FinalTeam"].unique())
-    email_dict = {}
-    for teams in email_team:
-        teams = str(teams)
-        email_dict[teams]["Appetizer"]["Teammember1"] = output1[output1["FinalTeam"] == teams and output1["Menu"] == "Appetizer"]
-    st.write(email_dict)
-    
-    
-    
+    st.write(output1.to_dict())
     name1 = list(output1["Name"])
     name2 = list(output1["Name Teammember"])
     email = list(output1["E-Mail"])
@@ -392,7 +384,39 @@ else:
         else:
             for name,teamname,email,team in zip(name1,name2,email,team):
                 msg = EmailMessage()
-                msg.set_content(f'This is my message for {name} and {teamname}. You are in team {team}')
+                msg.set_content(f"""Hello Group,
+                                \n 
+                                Thank you for participating in this Running Dinner. This is your group composition: 
+                                \n\n 
+                                1. Appetizer: 
+                                \n Teammember1: 
+                                \n Teammember2: 
+                                \n Street: 
+                                \n Phone Number: 
+                                \n Food Preferences: 
+                                \n
+                                2. Main Course: 
+                                \n Teammember1: 
+                                \n Teammember2: 
+                                \n Street: 
+                                \n Phone Number: 
+                                \n Food Preferences: 
+                                \n
+                                3. Dessert: 
+                                \n Teammember1: 
+                                \n Teammember2: 
+                                \n Street: 
+                                \n Phone Number: 
+                                \n Food Preferences: 
+                                \n\n
+                                Have a good night and we see each other all toghether at {final_destination}!
+                                \n
+                                Best,
+                                \n
+                                Your Running Dinner Team
+                                \n\n
+                                P.S.: Please check all food preferences and get in contact with each other if there are any!
+                               """)
 
                 msg['Subject'] = 'Running Dinner Information'
                 msg['From'] = sent_from

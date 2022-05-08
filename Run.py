@@ -366,17 +366,6 @@ else:
  
     #E-Mail Server
     st.sidebar.subheader("E-Mail")
-    """
-    name1_app = list(output1[output1["Menu"] == "Appetizer"]["Name"])
-    name2_app = list(output1[output1["Menu"] == "Appetizer"]["Name Teammember"])
-    phone_app = list(output1[output1["Menu"] == "Appetizer"]["Name"])
-    email = list(output1["E-Mail"])
-    team = list(output1["FinalTeam"])
-    """
-                                
-    
-    st.write(name1_app)
-    st.write(name2_app)
     
     sent_from = st.sidebar.text_input('Please put here your Gmail (ex.: introtorunningprogramming@gmail.com):')
     password = st.sidebar.text_input('Please put here your Password (ex.: JoJuMaPa351):')

@@ -251,11 +251,11 @@ else:
     output1 = output1.sort_values(by="FinalTeam")
     #clean dataset
     output1 = output1.drop(columns=["Zeitstempel","TeamID","Group"])
-    st.dataframe(output1)
+    
     output1 = output1.reindex(columns=["FinalTeam","Menu", "Name", "Address", "E-Mail", "Phonenumber", "Name Teammember", "E-Mail Partner", "Phonenumber Partner", "Food choice","latitude","longitude","distance"])
-    
+    st.dataframe(output1)
     output1["FinalTeam"] = output1["FinalTeam"].astype(int)
-    
+    st.dataframe(output1)
     
     #build drop down box
     all_teams=["All"]

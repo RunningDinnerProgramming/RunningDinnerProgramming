@@ -369,7 +369,7 @@ else:
     
     email_team = list(output1["FinalTeam"].unique())
     email_dict = {}
-    for teams in email_team:
+    for str(teams) in email_team:
         email_dict[teams] = 1
     st.write(email_dict)
     

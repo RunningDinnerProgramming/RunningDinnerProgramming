@@ -367,6 +367,14 @@ else:
     #E-Mail Server
     st.sidebar.subheader("E-Mail")
     
+    team = list(output1["FinalTeam"].unique)
+    email_dict = {}
+    for teams in team:
+        email_dict[teams] = 1
+    st.write(email_dict)
+    
+    
+    
     name1 = list(output1["Name"])
     name2 = list(output1["Name Teammember"])
     email = list(output1["E-Mail"])
@@ -385,7 +393,7 @@ else:
                 msg = EmailMessage()
                 msg.set_content(f'This is my message for {name} and {teamname}. You are in team {team}')
 
-                msg['Subject'] = 'This is just a test for running dinner'
+                msg['Subject'] = 'Running Dinner Information'
                 msg['From'] = sent_from
                 msg['To'] = email
 

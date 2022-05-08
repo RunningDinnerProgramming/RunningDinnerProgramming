@@ -384,7 +384,7 @@ else:
                 team_df = output1[output1["FinalTeam"] == var_new]
                 for mail in team_df["E-Mail"]:                           
                     msg = EmailMessage()
-                    msg.set_content(f"""Hello Group {team_df["FinalTeam"].iloc[[0]]},
+                    msg.set_content(f"""Hello Group {team_df["FinalTeam"].iloc[[0]][1]},
                     
 Thank you for participating in this Running Dinner. This is your group composition: 
 

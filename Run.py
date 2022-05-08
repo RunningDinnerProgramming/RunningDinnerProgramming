@@ -430,8 +430,7 @@ else:
 
                     msg['Subject'] = 'Running Dinner Information'
                     msg['From'] = sent_from
-                    recipients = [team_df["E-Mail"].iloc[[0]],team_df["E-Mail"].iloc[[1]],team_df["E-Mail"].iloc[[2]]
-                    msg['To'] = ", ".join(recipients)
+                    msg['To'] = mail
                     #msg['To'] = [team_df["E-Mail"].iloc[[0]],team_df["E-Mail"].iloc[[1]],team_df["E-Mail"].iloc[[2]]
 
                     # Send the message via our own SMTP server.

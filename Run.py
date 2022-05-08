@@ -367,7 +367,7 @@ else:
     #E-Mail Server
     st.sidebar.subheader("E-Mail")
     
-    st.write(output1.to_dict())
+    st.write(output1.to_dict(index="FinalTeam"))
     name1 = list(output1["Name"])
     name2 = list(output1["Name Teammember"])
     email = list(output1["E-Mail"])

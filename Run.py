@@ -379,8 +379,8 @@ else:
     
             number_teams = len(output1.index)/3
             for var in range(1,number_teams+1):
-                var = int(var)
-                team_df = output1[output1["FinalTeam"] == var]
+                var_new = int(var)
+                team_df = output1[output1["FinalTeam"] == var_new]
                 for mail in team_df["E-Mail"]:                           
                     msg = EmailMessage()
                     msg.set_content(f"""Hello {team_df["FinalTeam"].iloc[[0]]},

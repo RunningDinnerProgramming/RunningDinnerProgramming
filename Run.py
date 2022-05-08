@@ -389,11 +389,11 @@ else:
 Thank you for participating in this Running Dinner. This is your group composition: 
 
 1. Appetizer: 
-Teammember1: {team_df["Name"].iloc[0]}
-Teammember2: {team_df["Name Teammember"].iloc[0]}
-Address: {team_df["Address"].iloc[0]}
-Phone Number: {team_df["Phonenumber"].iloc[0]}
-Food Preferences: {team_df["Food choice"].iloc[0]}
+Teammember1: {team_df["Name"].iloc[2]}
+Teammember2: {team_df["Name Teammember"].iloc[2]}
+Address: {team_df["Address"].iloc[2]}
+Phone Number: {team_df["Phonenumber"].iloc[2]}
+Food Preferences: {team_df["Food choice"].iloc[2]}
                                     
 2. Main Course: 
 Teammember1: {team_df["Name"].iloc[1]}
@@ -403,11 +403,11 @@ Phone Number: {team_df["Phonenumber"].iloc[1]}
 Food Preferences: {team_df["Food choice"].iloc[1]}
                                     
 3. Dessert: 
-Teammember1: {team_df["Name"].iloc[2]}
-Teammember2: {team_df["Name Teammember"].iloc[2]}
-Address: {team_df["Address"].iloc[2]}
-Phone Number: {team_df["Phonenumber"].iloc[2]}
-Food Preferences: {team_df["Food choice"].iloc[2]}
+Teammember1: {team_df["Name"].iloc[0]}
+Teammember2: {team_df["Name Teammember"].iloc[0]}
+Address: {team_df["Address"].iloc[0]}
+Phone Number: {team_df["Phonenumber"].iloc[0]}
+Food Preferences: {team_df["Food choice"].iloc[0]}
                                     
                                     
 Have a good night and we see each other all toghether at {final_destination}!

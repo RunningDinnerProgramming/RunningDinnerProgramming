@@ -109,7 +109,7 @@ class algorithm:
         for key, item in data.items():
             end_location =data[key]["Address"]
             end_location_code = geolocator.geocode(end_location)
-            if end_location_code == None:
+            if end_location_code.latitude == None:
                 data[key]["latitude"] = -90
                 data[key]["longitude"] = -180
                 data[key]["distance"] = distance

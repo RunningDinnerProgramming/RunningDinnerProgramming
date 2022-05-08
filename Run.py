@@ -245,10 +245,10 @@ else:
     output1 = pd.read_json("data_json.json")
     st.write(output1)
     #filter out wrong address entries
-    wrong = output1[(output1["latitude"] == -89.9999) & (output1["longitude"] == 179.9999)]
+    wrong = output1[(output1["latitude"] == -89.9999) & (output1["longitude"] == -179.9999)]
     if wrong.shape[0] != 0:
-        wrong_address = output1[(output1["latitude"] == -89.9999) & (output1["longitude"] == 179.9999)]
-        output1 = output1.drop(output1[(output1["latitude"] == -89.9999) & (output1["longitude"] == 179.9999)].index)
+        wrong_address = output1[(output1["latitude"] == -89.9999) & (output1["longitude"] == -179.9999)]
+        output1 = output1.drop(output1[(output1["latitude"] == -89.9999) & (output1["longitude"] == -179.9999)].index)
         st.write(wrong_address)
     else:
         output1 = output1

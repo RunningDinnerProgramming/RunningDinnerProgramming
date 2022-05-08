@@ -384,30 +384,30 @@ else:
                 team_df = output1[output1["FinalTeam"] == var_new]
                 for mail in team_df["E-Mail"]:                           
                     msg = EmailMessage()
-                    msg.set_content(f"""Hello Group {team_df["FinalTeam"].iloc[[0]][1]},
+                    msg.set_content(f"""Hello Group {team_df["FinalTeam"].iloc[0,0]},
                     
 Thank you for participating in this Running Dinner. This is your group composition: 
 
 1. Appetizer: 
-Teammember1: {team_df["Name"].iloc[[0]]}
-Teammember2: {team_df["Name Teammember"].iloc[[0]]}
-Address: {team_df["Address"].iloc[[0]]}
-Phone Number: {team_df["Phonenumber"].iloc[[0]]}
-Food Preferences: {team_df["Food choice"].iloc[[0]]}
+Teammember1: {team_df["Name"].iloc[0,2]}
+Teammember2: {team_df["Name Teammember"].iloc[0,6]}
+Address: {team_df["Address"].iloc[0,3]}
+Phone Number: {team_df["Phonenumber"].iloc[0,4]}
+Food Preferences: {team_df["Food choice"].iloc[0,9]}
                                     
 2. Main Course: 
-Teammember1: {team_df["Name"].iloc[[1]]}
-Teammember2: {team_df["Name Teammember"].iloc[[1]]}
-Address: {team_df["Address"].iloc[[1]]}
-Phone Number: {team_df["Phonenumber"].iloc[[1]]}
-Food Preferences: {team_df["Food choice"].iloc[[1]]}
+Teammember1: {team_df["Name"].iloc[1,2]}
+Teammember2: {team_df["Name Teammember"].iloc[1,6]}
+Address: {team_df["Address"].iloc[1,3]}
+Phone Number: {team_df["Phonenumber"].iloc[1,4]}
+Food Preferences: {team_df["Food choice"].iloc[1,9]}
                                     
 3. Dessert: 
-Teammember1: {team_df["Name"].iloc[[2]]}
-Teammember2: {team_df["Name Teammember"].iloc[[2]]}
-Address: {team_df["Address"].iloc[[2]]}
-Phone Number: {team_df["Phonenumber"].iloc[[2]]}
-Food Preferences: {team_df["Food choice"].iloc[[2]]}
+Teammember1: {team_df["Name"].iloc[2,2]}
+Teammember2: {team_df["Name Teammember"].iloc[2,6]}
+Address: {team_df["Address"].iloc[2,3]}
+Phone Number: {team_df["Phonenumber"].iloc[2,4]}
+Food Preferences: {team_df["Food choice"].iloc[2,9]}
                                     
                                     
 Have a good night and we see each other all toghether at {final_destination}!

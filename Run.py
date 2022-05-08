@@ -419,7 +419,7 @@ Your Running Dinner Team
 P.S.: Please check all food preferences and get in touch with each other!
 """)
 
-                    msg['Subject'] = 'Running Dinner Information'
+                    msg['Subject'] = 'Running Dinner Information - Have Fun!'
                     msg['From'] = sent_from
                     msg['To'] = mail
                     #msg['To'] = [team_df["E-Mail"].iloc[[0]],team_df["E-Mail"].iloc[[1]],team_df["E-Mail"].iloc[[2]]
@@ -434,11 +434,11 @@ P.S.: Please check all food preferences and get in touch with each other!
             #E-Mail for Waiting List
             
             if lost_Data.empty == False:
-                number_wait = lost_data.shape[0]
+                number_wait = lost_Data.shape[0]
                 for wait in range(0,number_wait):
-                    for mail_lost in lost_data["E-Mail"]:                           
+                    for mail_lost in lost_Data["E-Mail"]:                           
                         msg = EmailMessage()
-                        msg.set_content(f"""Hello {lost_data["Name"].iloc[wait]},
+                        msg.set_content(f"""Hello {lost_Data["Name"].iloc[wait]},
 
 Unfortunately did you and your Teammember submit this time to late to this Running Dinner.
 
@@ -450,7 +450,7 @@ Your Running Dinner Team
 
 """)
 
-                        msg['Subject'] = 'Running Dinner Information'
+                        msg['Subject'] = 'Running Dinner Information - maybe next time'
                         msg['From'] = sent_from
                         msg['To'] = mail_lost
 

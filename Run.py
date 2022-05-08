@@ -202,6 +202,7 @@ SPREADSHEET_ID = '1C1Q7QQ8ZVhCP1ShHdmds6N2kxr1BX8RUqCeNnt4JEPk'
 DATA_TO_PULL = "Answers"
 final_destination = ""
 lost_Data = pd.DataFrame()
+wrong_address = pd.DataFrame()
 
 st.write("""## 🧶Description
 Hallo hier kommt eine riesen zummenfassung hin die alles erklälrt! check out this ➡️ [Survey Link](https://docs.google.com/forms/d/e/1FAIpQLSe01mkoWCHgOh7kSNHZ28DHL5xgaDFEMwfrMjqGQxkX8vt70w/viewform?usp=sf_link)
@@ -237,6 +238,14 @@ else:
 
     output1 = pd.read_json("data_json.json")
     
+    #filter out wrong address entries
+    wrong_address = output1[output1["latitude"] == -79.9999 and output1["longitude"] == 179.9999]
+    st.dataframe(wrong_address)
+    if wrong_address.shape[0] != 0:
+        output1 = output1.drop(output1[(output1["latitude"] == -79.9999) & (output1["longitude"] == 179.9999)].index)
+    
+    
+    #filter out last entries that cannot be distributet into teams
     if len(output1) % 3 == 2:
         lost_Data = output1.tail(2)
         output1 = output1.iloc[:-2 , :] 

@@ -248,7 +248,7 @@ else:
             food_menu[u] = "Appetizer"
         u+=1
     output1["Menu"] = food_menu
-    output1.sort_values(by=["FinalTeam"])
+    output1 = output1.sort_values(by=["FinalTeam"])
     #clean dataset
     output1 = output1.drop(columns=["Zeitstempel","TeamID","Group"])
     

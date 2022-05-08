@@ -254,7 +254,7 @@ else:
     
     output1 = output1.reindex(columns=["FinalTeam","Menu", "Name", "Address", "E-Mail", "Phonenumber", "Name Teammember", "E-Mail Partner", "Phonenumber Partner", "Food choice","latitude","longitude","distance"])
     output1["FinalTeam"] = output1["FinalTeam"].astype(int)
-    output1.sort_values(by=["FinalTeam","Menu"])
+    output1.sort_values(by=["FinalTeam"])
     
     #build drop down box
     all_teams=["All"]

@@ -134,7 +134,7 @@ class algorithm:
     def team(self):
         
         dataT = algorithm.geo(self)
-   """
+        """
         #filter out wrong address entries
         wrong_address = pd.DataFrame()
         wrong_address = dataT[dataT["latitude"] == -89.9999]
@@ -144,7 +144,7 @@ class algorithm:
             #dataT.drop(dataT[(dataT["latitude"] == -89.9999) & (dataT["longitude"] == -179.9999)].index ,inplace = True)
         else:
             dataT=dataT
-   """     
+        """     
         #filter out the teams that are to much
         lostData = pd.DataFrame()
         

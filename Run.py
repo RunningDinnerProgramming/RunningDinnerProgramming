@@ -146,10 +146,11 @@ class algorithm:
             dataT=dataT
         """     
         
-        wrong = dataT[(dataT["latitude"] == -89.9999) & (dataT["longitude"] == -179.9999)]
-        if wrong.shape[0] != 0:
-            wrong_address = dataT[(dataT["latitude"] == -89.9999) & (dataT["longitude"] == -179.9999)]
+        wrong_address = dataT[(dataT["latitude"] == -89.9999) & (dataT["longitude"] == -179.9999)]
+        if wrong_address.shape[0] != 0:
             dataT = dataT.drop(dataT[(dataT["latitude"] == -89.9999) & (dataT["longitude"] == -179.9999)].index)
+        else:
+            dataT = dataT
         
         
         #filter out the teams that are to much
@@ -192,7 +193,7 @@ class algorithm:
         dataT['FinalTeam'] = dataT['TeamID'].map(final_dict)
         dataT=dataT.sort_values("FinalTeam")
         
-        dataT_concat = pd.concat([dataT, lostData])
+        dataT_concat = pd.concat([dataT, lostData, wrong_address])
         
         return dataT_concat
     

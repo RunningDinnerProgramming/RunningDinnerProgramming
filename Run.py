@@ -269,7 +269,7 @@ else:
     if final_team_choice == "All":
 
         output = output1
-        st.dataframe(output)  
+
         st.write("""### Data Import:""")
         hide_dataframe_row_index = """
                                         <style>

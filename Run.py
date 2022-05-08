@@ -137,10 +137,10 @@ class algorithm:
    
         #filter out wrong address entries
         wrong_address = pd.DataFrame()
-        wrong_address = dataT[dataT["latitude"] == -89.9999 & dataT["longitude"] == -179.9999]
+        wrong_address = dataT[(dataT["latitude"] == -89.9999) & (dataT["longitude"] == -179.9999)]
 
         if wrong_address.shape[0] != 0:
-            dataT = dataT[dataT["latitude"] != -89.9999 & dataT["longitude"] != -179.9999]
+            dataT = dataT[(dataT["latitude"] != -89.9999) & (dataT["longitude"] != -179.9999)]
             #dataT.drop(dataT[(dataT["latitude"] == -89.9999) & (dataT["longitude"] == -179.9999)].index ,inplace = True)
         else:
             dataT=dataT

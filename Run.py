@@ -134,7 +134,7 @@ class algorithm:
     def team(self):
         
         dataT = algorithm.geo(self)
-   
+   """
         #filter out wrong address entries
         wrong_address = pd.DataFrame()
         wrong_address = dataT[dataT["latitude"] == -89.9999]
@@ -144,7 +144,7 @@ class algorithm:
             #dataT.drop(dataT[(dataT["latitude"] == -89.9999) & (dataT["longitude"] == -179.9999)].index ,inplace = True)
         else:
             dataT=dataT
-        
+   """     
         #filter out the teams that are to much
         lostData = pd.DataFrame()
         
@@ -185,7 +185,7 @@ class algorithm:
         dataT['FinalTeam'] = dataT['TeamID'].map(final_dict)
         dataT=dataT.sort_values("FinalTeam")
         
-        dataT_concat = pd.concat([dataT, lostData, wrong_address])
+        dataT_concat = pd.concat([dataT, lostData])
         
         return dataT_concat
     

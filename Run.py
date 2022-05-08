@@ -384,40 +384,40 @@ else:
                 team_df = output1[output1["FinalTeam"] == var_new]
                 for mail in team_df["E-Mail"]:                           
                     msg = EmailMessage()
-                    msg.set_content(f"""Hello {team_df["FinalTeam"].iloc[[0]]},
+                    msg.set_content(f"""Hello Group {team_df["FinalTeam"].iloc[[0]]},
                     
-                                    Thank you for participating in this Running Dinner. This is your group composition: 
+Thank you for participating in this Running Dinner. This is your group composition: 
 
-                                    1. Appetizer: 
-                                    Teammember1: {team_df["Name"].iloc[[0]]}
-                                    Teammember2: {team_df["Name Teammember"].iloc[[0]]}
-                                    Address: {team_df["Address"].iloc[[0]]}
-                                    Phone Number: {team_df["Phonenumber"].iloc[[0]]}
-                                    Food Preferences: {team_df["Food choice"].iloc[[0]]}
+1. Appetizer: 
+Teammember1: {team_df["Name"].iloc[[0]]}
+Teammember2: {team_df["Name Teammember"].iloc[[0]]}
+Address: {team_df["Address"].iloc[[0]]}
+Phone Number: {team_df["Phonenumber"].iloc[[0]]}
+Food Preferences: {team_df["Food choice"].iloc[[0]]}
                                     
-                                    2. Main Course: 
-                                    Teammember1: {team_df["Name"].iloc[[1]]}
-                                    Teammember2: {team_df["Name Teammember"].iloc[[1]]}
-                                    Address: {team_df["Address"].iloc[[1]]}
-                                    Phone Number: {team_df["Phonenumber"].iloc[[1]]}
-                                    Food Preferences: {team_df["Food choice"].iloc[[1]]}
+2. Main Course: 
+Teammember1: {team_df["Name"].iloc[[1]]}
+Teammember2: {team_df["Name Teammember"].iloc[[1]]}
+Address: {team_df["Address"].iloc[[1]]}
+Phone Number: {team_df["Phonenumber"].iloc[[1]]}
+Food Preferences: {team_df["Food choice"].iloc[[1]]}
                                     
-                                    3. Dessert: 
-                                    Teammember1: {team_df["Name"].iloc[[2]]}
-                                    Teammember2: {team_df["Name Teammember"].iloc[[2]]}
-                                    Address: {team_df["Address"].iloc[[2]]}
-                                    Phone Number: {team_df["Phonenumber"].iloc[[2]]}
-                                    Food Preferences: {team_df["Food choice"].iloc[[2]]}
+3. Dessert: 
+Teammember1: {team_df["Name"].iloc[[2]]}
+Teammember2: {team_df["Name Teammember"].iloc[[2]]}
+Address: {team_df["Address"].iloc[[2]]}
+Phone Number: {team_df["Phonenumber"].iloc[[2]]}
+Food Preferences: {team_df["Food choice"].iloc[[2]]}
                                     
                                     
-                                    Have a good night and we see each other all toghether at {final_destination}!
+Have a good night and we see each other all toghether at {final_destination}!
                                     
-                                    Best,
+Best,
                                     
-                                    Your Running Dinner Team
+Your Running Dinner Team
                                     
-                                    P.S.: Please check all food preferences and get in contact with each other if there are any!
-                                   """)
+P.S.: Please check all food preferences and get in contact with each other if there are any!
+""")
 
                     msg['Subject'] = 'Running Dinner Information'
                     msg['From'] = sent_from

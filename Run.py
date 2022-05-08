@@ -376,9 +376,9 @@ else:
         if sent_from == "" or password == "":
             st.sidebar.write("E-Mail or Password is missing!")
         else:
-    
+            
+            #E-Mail for participants
             number_teams = int(output1.shape[0]/3)
-            st.write(number_teams)
             for var in range(1,number_teams+1):
                 var_new = int(var)
                 team_df = output1[output1["FinalTeam"] == var_new]
@@ -388,26 +388,26 @@ else:
                     
 Thank you for participating in this Running Dinner. This is your group composition: 
 
-1. Appetizer: 
-Teammember1: {team_df["Name"].iloc[2]}
-Teammember2: {team_df["Name Teammember"].iloc[2]}
-Address: {team_df["Address"].iloc[2]}
-Phone Number: {team_df["Phonenumber"].iloc[2]}
-Food Preferences: {team_df["Food choice"].iloc[2]}
-                                    
-2. Main Course: 
-Teammember1: {team_df["Name"].iloc[1]}
-Teammember2: {team_df["Name Teammember"].iloc[1]}
-Address: {team_df["Address"].iloc[1]}
-Phone Number: {team_df["Phonenumber"].iloc[1]}
-Food Preferences: {team_df["Food choice"].iloc[1]}
-                                    
-3. Dessert: 
-Teammember1: {team_df["Name"].iloc[0]}
-Teammember2: {team_df["Name Teammember"].iloc[0]}
-Address: {team_df["Address"].iloc[0]}
-Phone Number: {team_df["Phonenumber"].iloc[0]}
-Food Preferences: {team_df["Food choice"].iloc[0]}
+    1. Appetizer: 
+        Teammember1: {team_df["Name"].iloc[2]}
+        Teammember2: {team_df["Name Teammember"].iloc[2]}
+        Address: {team_df["Address"].iloc[2]}
+        Phone Number: {team_df["Phonenumber"].iloc[2]}
+        Food Preferences: {team_df["Food choice"].iloc[2]}
+
+    2. Main Course: 
+        Teammember1: {team_df["Name"].iloc[1]}
+        Teammember2: {team_df["Name Teammember"].iloc[1]}
+        Address: {team_df["Address"].iloc[1]}
+        Phone Number: {team_df["Phonenumber"].iloc[1]}
+        Food Preferences: {team_df["Food choice"].iloc[1]}
+
+    3. Dessert: 
+        Teammember1: {team_df["Name"].iloc[0]}
+        Teammember2: {team_df["Name Teammember"].iloc[0]}
+        Address: {team_df["Address"].iloc[0]}
+        Phone Number: {team_df["Phonenumber"].iloc[0]}
+        Food Preferences: {team_df["Food choice"].iloc[0]}
                                     
                                     
 Have a good night and we see each other all toghether at {final_destination}!
@@ -416,7 +416,7 @@ Best,
                                     
 Your Running Dinner Team
                                     
-P.S.: Please check all food preferences and get in contact with each other if there are any!
+P.S.: Please check all food preferences and get in touch with each other!
 """)
 
                     msg['Subject'] = 'Running Dinner Information'
@@ -429,6 +429,37 @@ P.S.: Please check all food preferences and get in contact with each other if th
                     server.login(sent_from, password)
                     server.send_message(msg)
                     server.quit()
+ 
+
+            #E-Mail for Waiting List
+            
+            if lost_Data.empty == False:
+                number_wait = lost_data.shape[0]
+                for wait in range(0,number_wait):
+                    for mail_lost in lost_data["E-Mail"]:                           
+                        msg = EmailMessage()
+                        msg.set_content(f"""Hello {lost_data["Name"].iloc[wait]},
+
+Unfortunately did you and your Teammember submit this time to late to this Running Dinner.
+
+Our Running Dinner Team is more than sorry for this, but hopefully see you again next time.
+
+Best,
+
+Your Running Dinner Team
+
+""")
+
+                        msg['Subject'] = 'Running Dinner Information'
+                        msg['From'] = sent_from
+                        msg['To'] = mail_lost
+
+                        # Send the message via our own SMTP server.
+                        server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
+                        server.login(sent_from, password)
+                        server.send_message(msg)
+                        server.quit()
+
 
             st.sidebar.write("E-Mail send out successfully!")
         

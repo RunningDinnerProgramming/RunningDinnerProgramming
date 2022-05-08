@@ -253,9 +253,7 @@ else:
     output1 = output1.drop(columns=["Zeitstempel","TeamID","Group"])
     
     output1 = output1.reindex(columns=["FinalTeam","Menu", "Name", "Address", "E-Mail", "Phonenumber", "Name Teammember", "E-Mail Partner", "Phonenumber Partner", "Food choice","latitude","longitude","distance"])
-    st.dataframe(output1)
     output1["FinalTeam"] = output1["FinalTeam"].astype(int)
-    st.dataframe(output1)
     
     #build drop down box
     all_teams=["All"]
@@ -271,7 +269,7 @@ else:
     if final_team_choice == "All":
 
         output = output1
-          
+        st.dataframe(output)  
         st.write("""### Data Import:""")
         hide_dataframe_row_index = """
                                         <style>

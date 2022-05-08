@@ -377,7 +377,8 @@ else:
             st.sidebar.write("E-Mail or Password is missing!")
         else:
     
-            number_teams = len(output1.index)/3
+            number_teams = output1.shape[0]/3
+            st.write(number_teams)
             for var in range(1,number_teams+1):
                 var_new = int(var)
                 team_df = output1[output1["FinalTeam"] == var_new]

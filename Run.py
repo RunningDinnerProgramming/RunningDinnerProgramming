@@ -184,7 +184,7 @@ class algorithm:
         
         frame1=[dataT,lostData]
         dataT_concat1 = pd.concat(frame1)
-        frame=[frame1, wrong_address
+        frame=[frame1, wrong_address]
         dataT_concat = pd.concat(frame)
         
         return dataT_concat

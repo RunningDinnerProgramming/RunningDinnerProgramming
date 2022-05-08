@@ -430,7 +430,9 @@ else:
 
                 msg['Subject'] = 'Running Dinner Information'
                 msg['From'] = sent_from
-                msg['To'] = [team_df["E-Mail"].iloc[[0]],team_df["E-Mail"].iloc[[1]],team_df["E-Mail"].iloc[[2]]
+                recipients = [team_df["E-Mail"].iloc[[0]],team_df["E-Mail"].iloc[[1]],team_df["E-Mail"].iloc[[2]]
+                msg['To'] = ", ".join(recipients)
+                #msg['To'] = [team_df["E-Mail"].iloc[[0]],team_df["E-Mail"].iloc[[1]],team_df["E-Mail"].iloc[[2]]
 
                 # Send the message via our own SMTP server.
                 server = smtplib.SMTP_SSL('smtp.gmail.com', 465)

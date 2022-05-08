@@ -137,10 +137,10 @@ class algorithm:
    
         #filter out wrong address entries
         #wrong_address = pd.DataFrame()
-        wrong_address = dataT[(dataT["latitude"] == -79.9999) & (dataT["longitude"] == 179.9999)]
+        wrong_address = dataT[(dataT["latitude"] == -89.9999) & (dataT["longitude"] == -179.9999)]
 
         if wrong_address.shape[0] != 0:
-            dataT = dataT.drop(dataT[(dataT["latitude"] == -79.9999) & (dataT["longitude"] == 179.9999)].index)
+            dataT = dataT.drop(dataT[(dataT["latitude"] == -89.9999) & (dataT["longitude"] == -179.9999)].index)
         
         #filter out the teams that are to much
         lostData = pd.DataFrame()

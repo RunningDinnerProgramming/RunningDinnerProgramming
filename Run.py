@@ -389,7 +389,7 @@ else:
         else:
             var = 1
             number_teams = len(output1)/3
-            for var in range(1,number_teams+1)
+            for var in range(1,number_teams+1):
                 team_df = output1[output1["FinalTeam] == var]
                                           
                 msg = EmailMessage()

@@ -377,7 +377,7 @@ else:
             st.sidebar.write("E-Mail or Password is missing!")
         else:
     
-            number_teams = output1.shape[0]/3
+            number_teams = int(output1.shape[0]/3)
             st.write(number_teams)
             for var in range(1,number_teams+1):
                 var_new = int(var)

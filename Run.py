@@ -182,7 +182,7 @@ class algorithm:
         dataT['FinalTeam'] = dataT['TeamID'].map(final_dict)
         dataT=dataT.sort_values("FinalTeam")
         
-        dataT_concat = pd.concat([dataT, lostData, wrong_address], ignore_index=True)
+        dataT_concat = pd.concat([dataT, lostData, wrong_address])
         
         return dataT_concat
     

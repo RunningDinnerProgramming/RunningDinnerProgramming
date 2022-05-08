@@ -110,6 +110,10 @@ class algorithm:
             end_location =data[key]["Address"]
             #end_location_code = geolocator.geocode(end_location)
             if geolocator.geocode(end_location) == None:
+                help_lat = -90
+                help_long = -180
+                end_location_lat_long = (help_lat,help_long)
+                distance = (great_circle(algorithm.start(self), end_location_lat_long).miles)*kilometer_miles
                 data[key]["latitude"] = -90
                 data[key]["longitude"] = -180
                 data[key]["distance"] = distance

@@ -376,7 +376,7 @@ else:
         if sent_from == "" or password == "":
             st.sidebar.write("E-Mail or Password is missing!")
         else:
-            var = 1
+    
             number_teams = len(output1.index)/3
             for var in range(1,number_teams+1):
                 var = str(var)

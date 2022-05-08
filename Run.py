@@ -134,6 +134,13 @@ class algorithm:
     def team(self):
         
         dataT = algorithm.geo(self)
+   
+        #filter out wrong address entries
+        wrong_address = pd.DataFrame()
+        wrong_address = dataT[(dataT["latitude"] == -79.9999) & (dataT["longitude"] == 179.9999)]
+
+        if wrong_address.shape[0] != 0:
+            dataT = dataT.drop(dataT[(dataT["latitude"] == -79.9999) & (dataT["longitude"] == 179.9999)].index)
         
         #filter out the teams that are to much
         lostData = pd.DataFrame()
@@ -175,7 +182,7 @@ class algorithm:
         dataT['FinalTeam'] = dataT['TeamID'].map(final_dict)
         dataT=dataT.sort_values("FinalTeam")
         
-        frame=[dataT,lostData]
+        frame=[dataT,lostData,wrong_address]
         dataT_concat = pd.concat(frame)
         
         return dataT_concat
@@ -239,11 +246,12 @@ else:
     output1 = pd.read_json("data_json.json")
     
     #filter out wrong address entries
-    wrong_address = output1[(output1["latitude"] == -79.9999) & (output1["longitude"] == 179.9999)]
-    st.dataframe(wrong_address)
-    if wrong_address.shape[0] != 0:
+    if output1[output1["latitude"] == -79.9999 and output1["longitude"] == 179.9999:
+        wrong_address = output1[(output1["latitude"] == -79.9999) & (output1["longitude"] == 179.9999)]
         output1 = output1.drop(output1[(output1["latitude"] == -79.9999) & (output1["longitude"] == 179.9999)].index)
-    
+        st.write(wrong_address)
+    else:
+        output1 = output1
     
     #filter out last entries that cannot be distributet into teams
     if len(output1) % 3 == 2:

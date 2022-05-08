@@ -254,6 +254,7 @@ else:
     
     output1 = output1.reindex(columns=["FinalTeam","Menu", "Name", "Address", "E-Mail", "Phonenumber", "Name Teammember", "E-Mail Partner", "Phonenumber Partner", "Food choice","latitude","longitude","distance"])
     output1["FinalTeam"] = output1["FinalTeam"].astype(int)
+    output1.sort_values(by=["FinalTeam","Menu"])
     
     #build drop down box
     all_teams=["All"]
@@ -369,6 +370,7 @@ else:
     
     name1_app = list(output1[output1["Menu"] == "Appetizer"]["Name"])
     name2_app = list(output1[output1["Menu"] == "Appetizer"]["Name Teammember"])
+    phone_app = list(output1[output1["Menu"] == "Appetizer"]["Name"])
     email = list(output1["E-Mail"])
     team = list(output1["FinalTeam"])
     

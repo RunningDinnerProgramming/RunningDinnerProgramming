@@ -391,7 +391,7 @@ else:
             number_teams = len(output1)/3
             for var in range(1,number_teams+1):
                 var = str(var)
-                team_df = output1[output1["FinalTeam] == var]
+                team_df = output1[output1["FinalTeam"] == var]
                                           
                 msg = EmailMessage()
                 msg.set_content(f"""Hello {team_df["FinalTeam"].iloc[[0]]},

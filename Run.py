@@ -153,7 +153,8 @@ class algorithm:
             wrong_address.reset_index(inplace=True)
         else:
             dataT = dataT
-        
+        st.dataframe(dataT)
+        st.dataframe(wrong_address
         
         #filter out the teams that are to much
         lostData = pd.DataFrame()

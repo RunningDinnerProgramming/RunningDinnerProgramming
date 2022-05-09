@@ -178,7 +178,7 @@ class algorithm:
         dataT=dataT.sort_values(["Group","distance"])
         
         st.dataframe(dataT)
-        
+        """
         #distribute the teams into its final teams by a random algorythm
         dataT_grouped=dataT.groupby(dataT["Group"])
         
@@ -198,8 +198,23 @@ class algorithm:
                 final_dict[random_v]=u
                 i-=3
                 u+=1
+        """ 
+        x=[1,2,3]
+        final_dict={}
+               
+        for v in x:
+            groupv=dataT[dataT["Group"]==v]
+            list_v=list(groupv["TeamID"])
             
-
+            i=len(dataT)
+            u=1
+            while i>0: 
+                random_v=random.choice(list_v)
+                list_v.remove(random_v)
+                final_dict[random_v]=u
+                i-=3
+                u+=1
+        
         dataT['FinalTeam'] = dataT['TeamID'].map(final_dict)
         dataT=dataT.sort_values("FinalTeam")
         

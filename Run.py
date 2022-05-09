@@ -336,6 +336,9 @@ else:
         output_count = output.groupby("Food choice")["FinalTeam"].count()
         st.bar_chart(output_count)
 
+        #Dataset Problems
+        st.subheader("###Dataset Problems:")
+        st.write("here you can find all problems")
         
         #get teams that submitted to late
         if lost_Data.empty == False:
@@ -402,6 +405,9 @@ else:
         data_count = data.groupby("Food choice")["FinalTeam"].count()
         st.bar_chart(data_count)
 
+        #Dataset Problems
+        st.subheader("###Dataset Problems:")
+        st.write("here you can find all problems")    
         
         #get teams that submitted to late
         if lost_Data.empty == False:

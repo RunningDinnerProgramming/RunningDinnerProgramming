@@ -547,7 +547,7 @@ P.S.: Please check all food preferences and get in touch with each other!
 
 Unfortunately did you and your Teammember submit this time to late to this Running Dinner.
 
-Our Running Dinner Team is more than sorry for this, but hopefully see you again next time.
+Our Running Dinner Team is more than sorry for this, but hopefully we see you again next time.
 
 Best,
 
@@ -555,7 +555,7 @@ Your Running Dinner Team
 
 """)
 
-                     msg['Subject'] = 'Running Dinner Information - maybe next time'
+                     msg['Subject'] = "Running Dinner Information - maybe next time"
                      msg['From'] = sent_from
                      msg['To'] = mail_lost
 
@@ -585,7 +585,7 @@ Your Running Dinner Team
 
 """)
 
-                     msg['Subject'] = 'Running Dinner Information - Sorry but you submitted a wrong address'
+                     msg['Subject'] = "Running Dinner Information - Sorry but you submitted a wrong address"
                      msg['From'] = sent_from
                      msg['To'] = mail_wrong
 

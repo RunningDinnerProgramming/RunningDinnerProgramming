@@ -537,15 +537,13 @@ P.S.: Please check all food preferences and get in touch with each other!
                     server.send_message(msg)
                     server.quit()
  
-
+######################################
 #E-Mail for Waiting List
             
             if lost_Data.empty == False:
-                number_wait = lost_Data.shape[0]
-                for wait in range(0,number_wait):
-                    for mail_lost in lost_Data["E-Mail"]:                           
-                        msg = EmailMessage()
-                        msg.set_content(f"""Hello {lost_Data["Name"].iloc[wait]},
+                for mail_lost,name_lost in zip(lost_Data["E-Mail"],lost_Data["Name"]):
+                    msg = EmailMessage()
+                    msg.set_content(f"""Hello {name_lost},
 
 Unfortunately did you and your Teammember submit this time to late to this Running Dinner.
 
@@ -557,30 +555,25 @@ Your Running Dinner Team
 
 """)
 
-                        msg['Subject'] = 'Running Dinner Information - maybe next time'
-                        msg['From'] = sent_from
-                        msg['To'] = mail_lost
+                     msg['Subject'] = 'Running Dinner Information - maybe next time'
+                     msg['From'] = sent_from
+                     msg['To'] = mail_lost
 
-                        # Send the message via our own SMTP server.
-                        server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
-                        server.login(sent_from, password)
-                        server.send_message(msg)
-                        server.quit()
-
-
-            st.sidebar.write("E-Mail send out successfully!")
+                     # Send the message via our own SMTP server.
+                     server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
+                     server.login(sent_from, password)
+                     server.send_message(msg)
+                     server.quit()
         
-
+######################################
 #E-Mail to teams with a wrong address
 
 #E-Mail for Waiting List
             
             if wrong_address.empty == False:
-                number_wait = wrong_address.shape[0]
-                for wait in range(0,number_wait):
-                    for mail_lost in wrong_address["E-Mail"]:                           
-                        msg = EmailMessage()
-                        msg.set_content(f"""Hello {wrong_address["Name"].iloc[wait]},
+                for mail_wrong,name_wrong in zip(wrong_address["E-Mail"],wrong_address["Name"]):
+                    msg = EmailMessage()
+                    msg.set_content(f"""Hello {name_wrong},
 
 Unfortunately did you and your Teammember submit an address that is not readable by our Running Dinner Algorythm.
 
@@ -592,18 +585,26 @@ Your Running Dinner Team
 
 """)
 
-                        msg['Subject'] = 'Running Dinner Information - maybe next time'
-                        msg['From'] = sent_from
-                        msg['To'] = mail_lost
+                     msg['Subject'] = 'Running Dinner Information - Sorry but you submitted a wrong address'
+                     msg['From'] = sent_from
+                     msg['To'] = mail_wrong
 
-                        # Send the message via our own SMTP server.
-                        server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
-                        server.login(sent_from, password)
-                        server.send_message(msg)
-                        server.quit()
+                     # Send the message via our own SMTP server.
+                     server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
+                     server.login(sent_from, password)
+                     server.send_message(msg)
+                     server.quit()
 
 
             st.sidebar.write("E-Mail send out successfully!")
 
 
+            """
+             if wrong_address.empty == False:
+                number_wait = wrong_address.shape[0]
+                for wait in range(0,number_wait):
+                    for mail_lost in wrong_address["E-Mail"]:                           
+                        msg = EmailMessage()"""
+                        #msg.set_content(f"""Hello {wrong_address["Name"].iloc[wait]},
+     
      

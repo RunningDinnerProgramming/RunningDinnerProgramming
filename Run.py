@@ -457,13 +457,16 @@ else:
     st.sidebar.write("Click to download dataset.")
     
     if st.sidebar.button('Download'):
+        output.to_excel(r'/Users/marcoschmiederer/Desktop/Running_Dinner_test.xlsx', index = False)
+        
         st.write("Data succesfully exportet!")
+        """
         with pd.ExcelWriter('RunningDinner_final.xlsx') as writer:  
             output.to_excel(writer, sheet_name='MainRunningDinner')
             lost_Data.to_excel(writer, sheet_name='LostData')
             wrong_address.to_excel(writer, sheet_name='WrongAddress')
 
-    
+    """
 
 #######################################################################################################
 #######################################################################################################

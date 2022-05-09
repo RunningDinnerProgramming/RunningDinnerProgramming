@@ -351,7 +351,7 @@ else:
         #####################################
         #Dataset Problems
         
-        st.write("###Dataset Problems:")
+        st.write(""""## Dataset Problems:"""")
         st.write("here you can find all problems")
         
         #get teams that submitted to late
@@ -426,7 +426,7 @@ else:
         #####################################
         #Dataset Problems
         
-        st.write("###Dataset Problems:")
+        st.write(""""## Dataset Problems:"""")
         st.write("here you can find all problems")    
         
         #get teams that submitted to late

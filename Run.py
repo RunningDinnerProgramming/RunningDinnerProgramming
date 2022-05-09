@@ -220,7 +220,7 @@ class algorithm:
         dataT=dataT.sort_values("FinalTeam")
         
         dataT_concat = pd.concat([dataT, lostData, wrong_address])
-        dataT_concat.reset_index(inplace=True)
+        dataT_concat.reset_index(drop=True, inplace=True)
         return dataT_concat
     
 

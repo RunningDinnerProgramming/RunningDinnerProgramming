@@ -151,6 +151,8 @@ class algorithm:
             dataT = dataT[(dataT["latitude"] != -89.9999) & (dataT["longitude"] != -179.9999)]
             dataT.reset_index(inplace=True)
             wrong_address.reset_index(inplace=True)
+            dataT.index = dataT.index + 1
+            wrong_address.index = wrong_address.index + 1
         else:
             dataT = dataT
         

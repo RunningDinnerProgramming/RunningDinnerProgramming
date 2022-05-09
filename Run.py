@@ -254,9 +254,11 @@ else:
     if st.button('Import'):
         output2 = algo.team()
         file = output2.to_json("data_json.json")
-        git add file.json
+        
+        git add data_json.json
         git commit -m “updating json”
         git push
+        
         st.write("Data is up to date!")
     else:
         st.write("Data is not up to date!")

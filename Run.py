@@ -371,7 +371,7 @@ else:
             
             lost_Data = lost_Data.drop(columns=["index","Zeitstempel","latitude", "longitude","distance","TeamID","Group","FinalTeam"])
             st.dataframe(lost_Data)
-         else: 
+        else: 
             st.write("No team submitted to late!")
          
         
@@ -391,7 +391,7 @@ else:
             
             wrong_address = wrong_address.drop(columns=["index","Zeitstempel","TeamID","Group","FinalTeam"])                                               
             st.dataframe(wrong_address)
-         else: 
+        else: 
             st.write("No team submitted a wrong address!")
     
     #code if select specific team                          
@@ -450,7 +450,7 @@ else:
             lost_Data = lost_Data.drop(columns=["index","Zeitstempel","latitude", "longitude","distance","TeamID","Group","FinalTeam"])
             st.dataframe(lost_Data)
 
-         else: 
+        else: 
             st.write("No team submitted to late!")
 
         #table for teams that submitted a wrong address
@@ -469,7 +469,7 @@ else:
             wrong_address = wrong_address.drop(columns=["index","Zeitstempel","TeamID","Group","FinalTeam"])      
             st.dataframe(wrong_address)
             
-         else: 
+        else: 
             st.write("No team submitted a wrong address!")
 
 #######################################################################################################

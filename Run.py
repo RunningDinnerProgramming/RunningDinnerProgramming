@@ -198,6 +198,7 @@ class algorithm:
         dataT_concat = pd.concat([dataT, lostData, wrong_address])
         dataT_concat.reset_index(drop=True, inplace=True)
         return dataT_concat
+
     
 
 #######################################################################################################
@@ -441,6 +442,27 @@ else:
             
             wrong_address = wrong_address.drop(columns=["index","Zeitstempel","TeamID","Group","FinalTeam"])      
             st.dataframe(wrong_address)
+#######################################################################################################
+#######################################################################################################
+
+    #Download Dataset
+
+#######################################################################################################
+#######################################################################################################
+
+    st.sidebar.subheader("Download Dataset")
+    
+    file_path = st.sidebar.text_input('Please put here your file path:')
+    
+    st.sidebar.write("Click to download dataset.")
+    
+    if st.sidebar.button('Download'):
+        if file_path == "":
+            st.sidebar.write("Missing filepath!")
+        else:
+            df.to_excel(f'{file_path}RunningDinner_final.xlsx', index = False, header=True)
+
+    
 
 #######################################################################################################
 #######################################################################################################

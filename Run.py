@@ -451,17 +451,17 @@ else:
 #######################################################################################################
 
     st.sidebar.subheader("Download Dataset")
-    
+    """
     file_path = st.sidebar.text_input('Please put here your file path:')
-    
+    """
     st.sidebar.write("Click to download dataset.")
     
     if st.sidebar.button('Download'):
-        if file_path == "":
-            st.sidebar.write("Missing filepath!")
-        else:
-            path = f"{file_path}/RunningDinner_final.xlsx"
-            output.to_excel(path, index = False, header=True)
+        st.write("Data succesfully exportet!")
+        with pd.ExcelWriter('RunningDinner_final.xlsx') as writer:  
+            output.to_excel(writer, sheet_name='MainRunningDinner')
+            lostData.to_excel(writer, sheet_name='LostData')
+            wrong_address.to_excel(writer, sheet_name='WrongAddress')
 
     
 

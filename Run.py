@@ -351,7 +351,7 @@ else:
             # Inject CSS with Markdown
             st.markdown(hide_dataframe_row_index, unsafe_allow_html=True)
             
-            lost_Data = lost_Data.drop(columns=["index","Zeitstempel","latitude", "longitude","distance","TeamID","Group","FinalTeam","level_0"])
+            lost_Data = lost_Data.drop(columns=["index","Zeitstempel","latitude", "longitude","distance","TeamID","Group","FinalTeam"])
             st.dataframe(lost_Data)
          
         
@@ -368,7 +368,7 @@ else:
             # Inject CSS with Markdown
             st.markdown(hide_dataframe_row_index, unsafe_allow_html=True)
             
-            wrong_address = wrong_address.drop(columns=["index","Zeitstempel","TeamID","Group","FinalTeam","level_0"])                                               
+            wrong_address = wrong_address.drop(columns=["index","Zeitstempel","TeamID","Group","FinalTeam"])                                               
             st.dataframe(wrong_address)
     
     #code if select specific team                          
@@ -416,7 +416,7 @@ else:
             # Inject CSS with Markdown
             st.markdown(hide_dataframe_row_index, unsafe_allow_html=True)
             
-            lost_Data = lost_Data.drop(columns=["index","Zeitstempel","latitude", "longitude","distance","TeamID","Group","FinalTeam","level_0"])
+            lost_Data = lost_Data.drop(columns=["index","Zeitstempel","latitude", "longitude","distance","TeamID","Group","FinalTeam"])
             st.dataframe(lost_Data)
             
 
@@ -433,7 +433,7 @@ else:
             # Inject CSS with Markdown
             st.markdown(hide_dataframe_row_index, unsafe_allow_html=True)
             
-            wrong_address = wrong_address.drop(columns=["index","Zeitstempel","TeamID","Group","FinalTeam","level_0"])      
+            wrong_address = wrong_address.drop(columns=["index","Zeitstempel","TeamID","Group","FinalTeam"])      
             st.dataframe(wrong_address)
 
 #######################################################################################################

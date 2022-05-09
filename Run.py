@@ -178,7 +178,7 @@ class algorithm:
         dataT=dataT.sort_values(["Group","distance"])
         
         st.dataframe(dataT)
-        
+        """
         #distribute the teams into its final teams by a random algorythm
         dataT_grouped=dataT.groupby(dataT["Group"])
         
@@ -215,7 +215,7 @@ class algorithm:
                 final_dict[random_v]=u
                 i-=3
                 u+=1
-        """
+        
         dataT['FinalTeam'] = dataT['TeamID'].map(final_dict)
         dataT=dataT.sort_values("FinalTeam")
         
@@ -313,7 +313,7 @@ else:
             food_menu[u] = "Appetizer"
         u+=1
     output1["Menu"] = food_menu
-    output1 = output1.sort_values(by="FinalTeam")
+    output1 = output1.sort_values(["FinalTeam","distance"])
     #clean dataset
     output1 = output1.drop(columns=["Zeitstempel","TeamID","Group"])
     

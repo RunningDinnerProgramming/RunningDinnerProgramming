@@ -4,3 +4,4 @@ google_auth_oauthlib==0.5.1
 google.auth==2.6.6
 geopy==2.2.0
 google-api-python-client==2.47.0
+openpyxl==3.0.9

@@ -387,7 +387,6 @@ else:
             # Inject CSS with Markdown
             st.markdown(hide_dataframe_row_index, unsafe_allow_html=True)
             
-            #lost_Data = lost_Data.drop(columns=["Zeitstempel","latitude", "longitude","distance","TeamID","Group","FinalTeam"])
             st.dataframe(wrong_address)
     
     #code if select specific team                          
@@ -437,9 +436,32 @@ else:
             
             lost_Data = lost_Data.drop(columns=["Zeitstempel","latitude", "longitude","distance","TeamID","Group","FinalTeam"])
             st.dataframe(lost_Data)
+            
 
- 
-    #E-Mail Server
+                    #table for teams that submitted a wrong address
+        if wrong_address.empty == False:
+            st.write("""### Wrong Address:""")
+            hide_dataframe_row_index = """
+                                            <style>
+                                            .row_heading.level0 {display:none}
+                                            .blank {display:none}
+                                            </style>
+                                            """
+
+            # Inject CSS with Markdown
+            st.markdown(hide_dataframe_row_index, unsafe_allow_html=True)
+            
+            st.dataframe(wrong_address)
+
+#######################################################################################################
+#######################################################################################################
+
+#E-Mail Server
+
+#######################################################################################################
+#######################################################################################################
+
+#E-Mail to participants
     st.sidebar.subheader("E-Mail")
     
     sent_from = st.sidebar.text_input('Please put here your Gmail (ex.: introtorunningprogramming@gmail.com):')
@@ -506,7 +528,7 @@ P.S.: Please check all food preferences and get in touch with each other!
                     server.quit()
  
 
-            #E-Mail for Waiting List
+#E-Mail for Waiting List
             
             if lost_Data.empty == False:
                 number_wait = lost_Data.shape[0]
@@ -539,8 +561,39 @@ Your Running Dinner Team
             st.sidebar.write("E-Mail send out successfully!")
         
 
+#E-Mail to teams with a wrong address
+
+#E-Mail for Waiting List
+            
+            if wrong_address.empty == False:
+                number_wait = wrong_address.shape[0]
+                for wait in range(0,number_wait):
+                    for mail_lost in wrong_address["E-Mail"]:                           
+                        msg = EmailMessage()
+                        msg.set_content(f"""Hello {wrong_address["Name"].iloc[wait]},
+
+Unfortunately did you and your Teammember submit an address that is not readable by our Running Dinner Algorythm.
+
+Our Running Dinner Team is more than sorry for this, but hopefully see you again next time.
+
+Best,
+
+Your Running Dinner Team
+
+""")
+
+                        msg['Subject'] = 'Running Dinner Information - maybe next time'
+                        msg['From'] = sent_from
+                        msg['To'] = mail_lost
+
+                        # Send the message via our own SMTP server.
+                        server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
+                        server.login(sent_from, password)
+                        server.send_message(msg)
+                        server.quit()
 
 
+            st.sidebar.write("E-Mail send out successfully!")
 
 
      

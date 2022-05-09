@@ -25,7 +25,7 @@ import random
 import smtplib
 from email.message import EmailMessage
 
-import GitPython as git
+import git
 
 
 class Data:
@@ -257,7 +257,7 @@ else:
         output2 = algo.team()
         file = output2.to_json("data_json.json")
         
-        git add data_json.json
+        git add file
         git commit -m “updating json”
         git push
         

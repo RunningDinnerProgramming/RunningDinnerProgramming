@@ -25,6 +25,8 @@ import random
 import smtplib
 from email.message import EmailMessage
 
+import git
+
 
 class Data:
     

@@ -204,8 +204,9 @@ class algorithm:
                
         for v in x:
             groupv=dataT[dataT["Group"]==v]
+            st.dataframe(groupv
             list_v=list(groupv["TeamID"])
-            
+            st.dataframe(list_v)
             i=len(dataT)
             u=1
             while i>0: 

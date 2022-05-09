@@ -460,7 +460,7 @@ else:
         if file_path == "":
             st.sidebar.write("Missing filepath!")
         else:
-            df.to_excel(f'{file_path}RunningDinner_final.xlsx', index = False, header=True)
+            output.to_excel(f'{file_path}RunningDinner_final.xlsx', index = False, header=True)
 
     
 

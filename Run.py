@@ -145,7 +145,7 @@ class algorithm:
         else:
             dataT=dataT
         """     
-        
+        wrong_address = pd.DataFrame()
         wrong_address = dataT[(dataT["latitude"] == -89.9999) & (dataT["longitude"] == -179.9999)]
         if wrong_address.shape[0] != 0:
             dataT = dataT[(dataT["latitude"] != -89.9999) & (dataT["longitude"] != -179.9999)]
@@ -220,7 +220,7 @@ SPREADSHEET_ID = '1C1Q7QQ8ZVhCP1ShHdmds6N2kxr1BX8RUqCeNnt4JEPk'
 DATA_TO_PULL = "Answers"
 final_destination = ""
 lost_Data = pd.DataFrame()
-wrong_address = pd.DataFrame()
+#wrong_address = pd.DataFrame()
 
 st.write("""## 🧶Description
 Hallo hier kommt eine riesen zummenfassung hin die alles erklälrt! check out this ➡️ [Survey Link](https://docs.google.com/forms/d/e/1FAIpQLSe01mkoWCHgOh7kSNHZ28DHL5xgaDFEMwfrMjqGQxkX8vt70w/viewform?usp=sf_link)
@@ -249,6 +249,7 @@ else:
     
     if st.button('Import'):
         output2 = algo.team()
+        st.dataframe(output2)
         file = output2.to_json("data_json.json")
         st.write("Data is up to date!")
     else:

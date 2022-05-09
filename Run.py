@@ -176,9 +176,12 @@ class algorithm:
         dataT["TeamID"]=dataT.index
         dataT["Group"] = pd.qcut(dataT["distance"],3,labels=[1,2,3])
         dataT=dataT.sort_values(["Group","distance"])
-
+        
+        st.dataframe(dataT)
+        
         #distribute the teams into its final teams by a random algorythm
         dataT_grouped=dataT.groupby(dataT["Group"])
+        
         st.dataframe(dataT_grouped)
         x=[1,2,3]
         final_dict={}

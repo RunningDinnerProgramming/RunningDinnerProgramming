@@ -153,8 +153,6 @@ class algorithm:
             wrong_address.reset_index(inplace=True)
         else:
             dataT = dataT
-        st.dataframe(dataT)
-        st.dataframe(wrong_address)
         
         #filter out the teams that are to much
         lostData = pd.DataFrame()
@@ -169,15 +167,12 @@ class algorithm:
             lostData.reset_index(inplace=True)
         else:
             dataT=dataT
-            
-        st.dataframe(lostData)
-        
+           
         #create 3 quantiles
         dataT["TeamID"]=dataT.index
         dataT["Group"] = pd.qcut(dataT["distance"],3,labels=[1,2,3])
         dataT=dataT.sort_values(["Group","distance"])
         
-        st.dataframe(dataT)
         """
         #distribute the teams into its final teams by a random algorythm
         dataT_grouped=dataT.groupby(dataT["Group"])
@@ -204,9 +199,8 @@ class algorithm:
                
         for v in x:
             groupv=dataT[dataT["Group"]==v]
-            st.dataframe(groupv)
             list_v=list(groupv["TeamID"])
-            st.dataframe(list_v)
+
             i=len(dataT)
             u=1
             while i>0: 
@@ -345,7 +339,7 @@ else:
 
         # Inject CSS with Markdown
         st.markdown(hide_dataframe_row_index, unsafe_allow_html=True)
-        #data = output
+
         st.dataframe(output)
 
 

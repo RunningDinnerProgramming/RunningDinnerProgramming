@@ -460,7 +460,7 @@ else:
         if file_path == "":
             st.sidebar.write("Missing filepath!")
         else:
-            path = f"r'{file_path}/RunningDinner_final.xlsx"
+            path = f"{file_path}/RunningDinner_final.xlsx"
             output.to_excel(path, index = False, header=True)
 
     

@@ -150,6 +150,7 @@ class algorithm:
         if wrong_address.shape[0] != 0:
             dataT = dataT[(dataT["latitude"] != -89.9999) & (dataT["longitude"] != -179.9999)]
             dataT.reset_index(inplace=True)
+            wrong_address.reset_index(inplace=True)
         else:
             dataT = dataT
         
@@ -159,10 +160,12 @@ class algorithm:
         
         if len(dataT) % 3 == 2:
             lostData = dataT.tail(2)
-            dataT = dataT.iloc[:-2 , :] 
+            dataT = dataT.iloc[:-2 , :]
+            lostData.reset_index(inplace=True)
         elif len(dataT) % 3 == 1:
             lostData = dataT.tail(1)
             dataT = dataT.iloc[:-1 , :]
+            lostData.reset_index(inplace=True)
         else:
             dataT=dataT
         

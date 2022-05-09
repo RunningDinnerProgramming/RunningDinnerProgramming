@@ -529,7 +529,6 @@ P.S.: Please check all food preferences and get in touch with each other!
                     msg['Subject'] = 'Running Dinner Information - Have Fun!'
                     msg['From'] = sent_from
                     msg['To'] = mail
-                    #msg['To'] = [team_df["E-Mail"].iloc[[0]],team_df["E-Mail"].iloc[[1]],team_df["E-Mail"].iloc[[2]]
 
                     # Send the message via our own SMTP server.
                     server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
@@ -554,21 +553,19 @@ Best,
 Your Running Dinner Team
 
 """)
+                    
+                    msg['Subject'] = "Running Dinner Information - maybe next time"
+                    msg['From'] = sent_from
+                    msg['To'] = mail_lost
 
-                     msg['Subject'] = "Running Dinner Information - maybe next time"
-                     msg['From'] = sent_from
-                     msg['To'] = mail_lost
-
-                     # Send the message via our own SMTP server.
-                     server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
-                     server.login(sent_from, password)
-                     server.send_message(msg)
-                     server.quit()
+                    # Send the message via our own SMTP server.
+                    server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
+                    server.login(sent_from, password)
+                    server.send_message(msg)
+                    server.quit()
         
 ######################################
 #E-Mail to teams with a wrong address
-
-#E-Mail for Waiting List
             
             if wrong_address.empty == False:
                 for mail_wrong,name_wrong in zip(wrong_address["E-Mail"],wrong_address["Name"]):
@@ -585,15 +582,15 @@ Your Running Dinner Team
 
 """)
 
-                     msg['Subject'] = "Running Dinner Information - Sorry but you submitted a wrong address"
-                     msg['From'] = sent_from
-                     msg['To'] = mail_wrong
+                    msg['Subject'] = "Running Dinner Information - Sorry but you submitted a wrong address"
+                    msg['From'] = sent_from
+                    msg['To'] = mail_wrong
 
-                     # Send the message via our own SMTP server.
-                     server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
-                     server.login(sent_from, password)
-                     server.send_message(msg)
-                     server.quit()
+                    # Send the message via our own SMTP server.
+                    server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
+                    server.login(sent_from, password)
+                    server.send_message(msg)
+                    server.quit()
 
 
             st.sidebar.write("E-Mail send out successfully!")

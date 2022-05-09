@@ -372,7 +372,23 @@ else:
             
             lost_Data = lost_Data.drop(columns=["Zeitstempel","latitude", "longitude","distance","TeamID","Group","FinalTeam"])
             st.dataframe(lost_Data)
-     
+         
+        
+        #table for teams that submitted a wrong address
+        if wrong_address.empty == False:
+            st.write("""### Wrong Address:""")
+            hide_dataframe_row_index = """
+                                            <style>
+                                            .row_heading.level0 {display:none}
+                                            .blank {display:none}
+                                            </style>
+                                            """
+
+            # Inject CSS with Markdown
+            st.markdown(hide_dataframe_row_index, unsafe_allow_html=True)
+            
+            #lost_Data = lost_Data.drop(columns=["Zeitstempel","latitude", "longitude","distance","TeamID","Group","FinalTeam"])
+            st.dataframe(wrong_address)
     
     #code if select specific team                          
     else:

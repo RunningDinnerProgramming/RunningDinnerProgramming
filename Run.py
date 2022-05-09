@@ -216,6 +216,8 @@ st.set_page_config(
 )
 st.write("# Running Dinner")
 
+#####################################
+#pre set input
 
 SCOPES=['https://www.googleapis.com/auth/spreadsheets']
 SPREADSHEET_ID = '1C1Q7QQ8ZVhCP1ShHdmds6N2kxr1BX8RUqCeNnt4JEPk'
@@ -224,6 +226,8 @@ final_destination = ""
 lost_Data = pd.DataFrame()
 wrong_address = pd.DataFrame()
 
+#####################################
+#Interface
 st.write("""## 🧶Description
 Hallo hier kommt eine riesen zummenfassung hin die alles erklälrt! check out this ➡️ [Survey Link](https://docs.google.com/forms/d/e/1FAIpQLSe01mkoWCHgOh7kSNHZ28DHL5xgaDFEMwfrMjqGQxkX8vt70w/viewform?usp=sf_link)
 
@@ -232,13 +236,9 @@ To clear old event, clear this spreadsheet! ➡️ [Spreadsheet](https://docs.go
 For further information check out our README file on GitHub! ➡️ [README](https://github.com/RunningDinnerProgramming/RunningDinnerProgramming/blob/ee946f443f32e5db918f1e8553dc641ef903d597/README.md)
 """)
 
-
 st.write("""### Final Destination:""")
 final_destination = st.text_input('Please enter your streetname, housenumber and city (KEEP THE FORMAT LIKE THIS EXAMPLE - Rua do Forno do Tijolo 29D Lisboa)')
 st.write('The Final location is:', final_destination)
-
-
-#start_location = "Rua do Forno do Tijolo 29D Lisboa"
 
 algo = algorithm(SCOPES,SPREADSHEET_ID,DATA_TO_PULL,final_destination)
 
@@ -248,6 +248,8 @@ if final_destination == "":
     st.sidebar.write("In oder to import data please make sure to insert a start location!")
 
 else:
+    #####################################
+    #import new Data
     
     if st.button('Import'):
         output2 = algo.team()
@@ -260,6 +262,7 @@ else:
     
     
     #filter out wrong address entries
+    
     wrong = output1[(output1["latitude"] == -89.9999) & (output1["longitude"] == -179.9999)]
     if wrong.shape[0] != 0:
         wrong_address = output1[(output1["latitude"] == -89.9999) & (output1["longitude"] == -179.9999)]
@@ -268,6 +271,7 @@ else:
         output1 = output1
     
     #filter out last entries that cannot be distributet into teams
+    
     if len(output1) % 3 == 2:
         lost_Data = output1.tail(2)
         output1 = output1.iloc[:-2 , :] 
@@ -278,6 +282,7 @@ else:
         output1=output1
         
     #connect Food Menu to Group ID 1, 2 or 3
+    
     u=0
     food_menu = list(output1["Group"])
     for i in food_menu:
@@ -290,6 +295,7 @@ else:
         u+=1
     output1["Menu"] = food_menu
     output1 = output1.sort_values(["FinalTeam","distance"])
+    
     #clean dataset
     output1 = output1.drop(columns=["Zeitstempel","TeamID","Group"])
     
@@ -297,6 +303,7 @@ else:
     output1["FinalTeam"] = output1["FinalTeam"].astype(int)
     
     #build drop down box
+    
     all_teams=["All"]
     final_team = list(output1["FinalTeam"].unique())
                         
@@ -307,6 +314,7 @@ else:
     st.sidebar.write('You selected Team:', final_team_choice)
                         
     #code if select all teams
+    
     if final_team_choice == "All":
 
         output = output1
@@ -320,28 +328,34 @@ else:
                                         """
 
         # Inject CSS with Markdown
+        
         st.markdown(hide_dataframe_row_index, unsafe_allow_html=True)
 
         st.dataframe(output)
 
 
         #get map
+        
         st.subheader("Map")
         map_data = output[["latitude","longitude"]]
         st.map(map_data)
 
 
         #count food preference
+        
         st.subheader("Food Preferences")
         
         output_count = output.groupby("Food choice")["FinalTeam"].count()
         st.bar_chart(output_count)
-
+        
+        #####################################
         #Dataset Problems
-        st.subheader("###Dataset Problems:")
+        
+        st.write("###Dataset Problems:")
         st.write("here you can find all problems")
         
         #get teams that submitted to late
+        
         if lost_Data.empty == False:
             st.write("""### Wait List:""")
             #st.session_state = output
@@ -360,6 +374,7 @@ else:
          
         
         #table for teams that submitted a wrong address
+        
         if wrong_address.empty == False:
             st.write("""### Wrong Address:""")
             hide_dataframe_row_index = """
@@ -395,22 +410,27 @@ else:
 
 
         #get map
+        
         st.subheader("Map")
         map_data = data[["latitude","longitude"]]
         st.map(map_data)
 
 
         #count food preference
+        
         st.subheader("Food Preferences")
         
         data_count = data.groupby("Food choice")["FinalTeam"].count()
         st.bar_chart(data_count)
-
+        
+        #####################################
         #Dataset Problems
-        st.subheader("###Dataset Problems:")
+        
+        st.write("###Dataset Problems:")
         st.write("here you can find all problems")    
         
         #get teams that submitted to late
+        
         if lost_Data.empty == False:
             st.write("""### Wait List:""")
             hide_dataframe_row_index = """
@@ -427,7 +447,7 @@ else:
             st.dataframe(lost_Data)
             
 
-                    #table for teams that submitted a wrong address
+        #table for teams that submitted a wrong address
         if wrong_address.empty == False:
             st.write("""### Wrong Address:""")
             hide_dataframe_row_index = """
@@ -442,31 +462,6 @@ else:
             
             wrong_address = wrong_address.drop(columns=["index","Zeitstempel","TeamID","Group","FinalTeam"])      
             st.dataframe(wrong_address)
-#######################################################################################################
-#######################################################################################################
-
-    #Download Dataset
-
-#######################################################################################################
-#######################################################################################################
-
-    st.sidebar.subheader("Download Dataset")
-    """
-    file_path = st.sidebar.text_input('Please put here your file path:')
-    """
-    st.sidebar.write("Click to download dataset.")
-    
-    if st.sidebar.button('Download'):
-        output.to_excel(r'/Users/marcoschmiederer/Desktop/Running_Dinner_test.xlsx', index = False)
-        
-        st.write("Data succesfully exportet!")
-        """
-        with pd.ExcelWriter('RunningDinner_final.xlsx') as writer:  
-            output.to_excel(writer, sheet_name='MainRunningDinner')
-            lost_Data.to_excel(writer, sheet_name='LostData')
-            wrong_address.to_excel(writer, sheet_name='WrongAddress')
-
-    """
 
 #######################################################################################################
 #######################################################################################################

@@ -169,6 +169,8 @@ class algorithm:
             lostData.reset_index(inplace=True)
         else:
             dataT=dataT
+            
+        st.dataframe(lostData)
         
         #create 3 quantiles
         dataT["TeamID"]=dataT.index
@@ -177,7 +179,7 @@ class algorithm:
 
         #distribute the teams into its final teams by a random algorythm
         dataT_grouped=dataT.groupby(dataT["Group"])
-        
+        st.dataframe(dataT_grouped)
         x=[1,2,3]
         final_dict={}
                

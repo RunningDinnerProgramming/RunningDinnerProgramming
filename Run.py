@@ -150,8 +150,8 @@ class algorithm:
         wrong_address = dataT[(dataT["latitude"] == -89.9999) & (dataT["longitude"] == -179.9999)]
         if wrong_address.shape[0] != 0:
             dataT = dataT[(dataT["latitude"] != -89.9999) & (dataT["longitude"] != -179.9999)]
-            dataT.reset_index(inplace=True)
-            wrong_address.reset_index(inplace=True)
+            dataT.reset_index(drop=True, inplace=True)
+            wrong_address.reset_index(drop=True, inplace=True)
         else:
             dataT = dataT
         
@@ -174,27 +174,8 @@ class algorithm:
         dataT["Group"] = pd.qcut(dataT["distance"],3,labels=[1,2,3])
         dataT=dataT.sort_values(["Group","distance"])
         
-        """
-        #distribute the teams into its final teams by a random algorythm
-        dataT_grouped=dataT.groupby(dataT["Group"])
         
-        st.dataframe(dataT_grouped)
-        x=[1,2,3]
-        final_dict={}
-               
-        for v in x:
-            groupv=dataT_grouped.get_group(v)
-            list_v=list(groupv["TeamID"])
-            
-            i=len(dataT)
-            u=1
-            while i>0: 
-                random_v=random.choice(list_v)
-                list_v.remove(random_v)
-                final_dict[random_v]=u
-                i-=3
-                u+=1
-        """ 
+        #distribute the teams into its final teams by a random algorythm
         x=[1,2,3]
         final_dict={}
                

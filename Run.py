@@ -108,6 +108,7 @@ class algorithm:
         #get latitude and longitude from a team and calculate distance to center of map
         for key, item in data.items():
             end_location =data[key]["Address"]
+            
             #end_location_code = geolocator.geocode(end_location)
             if geolocator.geocode(end_location) == None:
                 help_lat = -89.9999
@@ -268,14 +269,14 @@ else:
     
     if st.button('Import'):
         output2 = algo.team()
-        st.dataframe(output2)
         file = output2.to_json("data_json.json")
         st.write("Data is up to date!")
     else:
         st.write("Data is not up to date!")
 
     output1 = pd.read_json("data_json.json")
-    st.write(output1)
+    
+    
     #filter out wrong address entries
     wrong = output1[(output1["latitude"] == -89.9999) & (output1["longitude"] == -179.9999)]
     if wrong.shape[0] != 0:

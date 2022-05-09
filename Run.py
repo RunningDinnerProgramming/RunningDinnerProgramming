@@ -387,7 +387,7 @@ else:
             # Inject CSS with Markdown
             st.markdown(hide_dataframe_row_index, unsafe_allow_html=True)
             
-            wrong_address = lost_Data.drop(columns=["index","Zeitstempel","TeamID","Group","FinalTeam","level_0"])                                               
+            #wrong_address = lost_Data.drop(columns=["index","Zeitstempel","TeamID","Group","FinalTeam","level_0"])                                               
             st.dataframe(wrong_address)
     
     #code if select specific team                          
@@ -452,7 +452,7 @@ else:
             # Inject CSS with Markdown
             st.markdown(hide_dataframe_row_index, unsafe_allow_html=True)
             
-            wrong_address = lost_Data.drop(columns=["index","Zeitstempel","TeamID","Group","FinalTeam","level_0"])      
+            #wrong_address = lost_Data.drop(columns=["index","Zeitstempel","TeamID","Group","FinalTeam","level_0"])      
             st.dataframe(wrong_address)
 
 #######################################################################################################

@@ -234,26 +234,32 @@ st.write("""## 📝 Description
 
 Welcome to your Running Dinner Program!
 
-Before you can start, **please first fill in the final address** for your Running Dinner!
+Before you can start, **please first fill in the final destination address** for your Running Dinner!
 
-Hallo hier kommt eine riesen zummenfassung hin die alles erklälrt! check out this ➡️ [Survey Link](https://docs.google.com/forms/d/e/1FAIpQLSe01mkoWCHgOh7kSNHZ28DHL5xgaDFEMwfrMjqGQxkX8vt70w/viewform?usp=sf_link)
 
-To clear old event, clear this spreadsheet! ➡️ [Spreadsheet](https://docs.google.com/spreadsheets/d/1C1Q7QQ8ZVhCP1ShHdmds6N2kxr1BX8RUqCeNnt4JEPk/edit?usp=sharing)
+Here you can access the Running Dinner Survey ➡️ [Survey Link](https://docs.google.com/forms/d/e/1FAIpQLSe01mkoWCHgOh7kSNHZ28DHL5xgaDFEMwfrMjqGQxkX8vt70w/viewform?usp=sf_link)
 
-For further information check out our README file on GitHub! ➡️ [README](https://github.com/RunningDinnerProgramming/RunningDinnerProgramming/blob/ee946f443f32e5db918f1e8553dc641ef903d597/README.md)
+Here you can access the answers from the Running Dinner Survey ➡️ [Spreadsheet](https://docs.google.com/spreadsheets/d/1C1Q7QQ8ZVhCP1ShHdmds6N2kxr1BX8RUqCeNnt4JEPk/edit?usp=sharing)
+❗ Important ❗
+If you want to create a new Running Dinner, you have to **clear ALL answers from the spreadsheet above**!
+
+
+Here you can access the README file for the Running Dinner Program for further information ➡️ [README](https://github.com/RunningDinnerProgramming/RunningDinnerProgramming/blob/ee946f443f32e5db918f1e8553dc641ef903d597/README.md)
 """)
 
 st.write("""### 📍 Final Destination:
 
 
+
 ❗ Attention ❗
 
-**Please use the following format** for the final address: 
+**Please use the following address format** for the final destination: 
 
 Streetname Housenumber City 
 
 Example: Rua da Boavista 65 Lisboa
 """)
+
 
 
 final_destination = st.text_input('Please enter the final address here:')

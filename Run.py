@@ -251,8 +251,10 @@ st.write("""### 📍 Final Destination:
 **Please use the following format** for the final address: 
 
 Streetname Housenumber City 
+
 Example: Rua da Boavista 65 Lisboa
 """)
+
 
 final_destination = st.text_input('Please enter the final address here:')
 st.write('The Final location is:', final_destination)

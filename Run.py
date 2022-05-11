@@ -237,21 +237,26 @@ Welcome to your Running Dinner Program!
 Before you can start, **please first fill in the final destination address** for your Running Dinner!
 
 
+
 Here you can access the Running Dinner Survey ➡️ [Survey Link](https://docs.google.com/forms/d/e/1FAIpQLSe01mkoWCHgOh7kSNHZ28DHL5xgaDFEMwfrMjqGQxkX8vt70w/viewform?usp=sf_link)
 
 Here you can access the answers from the Running Dinner Survey ➡️ [Spreadsheet](https://docs.google.com/spreadsheets/d/1C1Q7QQ8ZVhCP1ShHdmds6N2kxr1BX8RUqCeNnt4JEPk/edit?usp=sharing)
+
 ❗ Important ❗
+
 If you want to create a new Running Dinner, you have to **clear ALL answers from the spreadsheet above**!
 
 
 Here you can access the README file for the Running Dinner Program for further information ➡️ [README](https://github.com/RunningDinnerProgramming/RunningDinnerProgramming/blob/ee946f443f32e5db918f1e8553dc641ef903d597/README.md)
 """)
 
+
+
 st.write("""### 📍 Final Destination:
 
 
 
-❗ Attention ❗
+❗ Important ❗
 
 **Please use the following address format** for the final destination: 
 

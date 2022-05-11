@@ -352,7 +352,7 @@ else:
 
         output = output1
 
-        st.write("""### Participants List:
+        st.write("""### 👯‍♀️ Participants List:
         Here you can see the full participants list with all necessary information.
         
         The Running Dinner Program already **allocated all Participants from this list to their final teams**, which you can see in the first column.
@@ -378,7 +378,7 @@ else:
 
         #get map
         
-        st.subheader("Map")
+        st.subheader("### 🗺️ Map")
         st.write("Here you can see the locations of all participants.")
         map_data = output[["latitude","longitude"]]
         st.map(map_data)
@@ -386,7 +386,7 @@ else:
 
         #count food preference
         
-        st.subheader("Food Preferences")
+        st.subheader("### 🥗 Food Preferences")
         
         output_count = output.groupby("Food choice")["FinalTeam"].count()
         st.bar_chart(output_count)
@@ -400,7 +400,7 @@ else:
         #get teams that submitted to late
         
         if lost_Data.empty == False:
-            st.write("""### Wait List:""")
+            st.write("""### 🕑 Wait List:""")
             #st.session_state = output
             hide_dataframe_row_index = """
                                             <style>
@@ -421,7 +421,7 @@ else:
         #table for teams that submitted a wrong address
         
         if wrong_address.empty == False:
-            st.write("""### Wrong Address:""")
+            st.write("""### ❌ Wrong Address:""")
             hide_dataframe_row_index = """
                                             <style>
                                             .row_heading.level0 {display:none}

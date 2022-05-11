@@ -245,13 +245,15 @@ For further information check out our README file on GitHub! ➡️ [README](htt
 
 st.write("""### 📍 Final Destination:
 
-# ❗ Attention ❗
+❗ Attention ❗
 
 **Please use the following format** for the final address: 
+
 Streetname Housenumber City 
+
 Example: Rua da Boavista 65 Lisboa
 """)
-final_destination = st.text_input('Please enter your streetname, housenumber and city (KEEP THE FORMAT LIKE THIS EXAMPLE - Rua do Forno do Tijolo 29D Lisboa)')
+final_destination = st.text_input('')
 st.write('The Final location is:', final_destination)
 
 algo = algorithm(SCOPES,SPREADSHEET_ID,DATA_TO_PULL,final_destination)

@@ -355,11 +355,11 @@ else:
         st.write("""### Participants List:
         Here you can see the full participants list with all necessary information.
         
-        The Running Dinner Program already allocated all Participants from this list to their final teams, which you can see in the first column.
+        The Running Dinner Program already **allocated all Participants from this list to their final teams**, which you can see in the first column.
         
-        Even better, every participant was already matched with a teampartner, which you can see i the seventh column.
+        Even better, **every participant was already matched with a teampartner**, which you can see i the seventh column.
         
-        Additionally, all necessary information (address, e-mail, phonenumber) of both team members are included in the participants list.
+        Additionally, **all necessary information** (address, e-mail, phonenumber) of both team members are included in the participants list.
         """)
          
         hide_dataframe_row_index = """
@@ -379,6 +379,7 @@ else:
         #get map
         
         st.subheader("Map")
+        st.write("Here you can see the locations of all participants.")
         map_data = output[["latitude","longitude"]]
         st.map(map_data)
 

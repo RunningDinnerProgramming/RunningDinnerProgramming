@@ -234,7 +234,10 @@ st.write("""## 📝 Description
 
 Welcome to your Running Dinner Program!
 
+
 Before you can start, **please first fill in the final destination address** for your Running Dinner!
+
+
 
 
 
@@ -252,15 +255,15 @@ Here you can access the README file for the Running Dinner Program for further i
 
 
 
+
+
 st.write("""### 📍 Final Destination:
 
 
 
 ❗ Important ❗
 
-**Please use the following address format** for the final destination: 
-
-Streetname Housenumber City 
+**Please use the following address format** for the final destination:  Streetname Housenumber City 
 
 Example: Rua da Boavista 65 Lisboa
 """)

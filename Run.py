@@ -289,12 +289,11 @@ else:
         file = output2.to_json("data_json.json")
         st.write("Data is up to date!")
     
+    output1 = pd.read_json("data_json.json")
+    
     if output1.empty == True:
         st.write("Data is not up to date!")
     else:
-
-        output1 = pd.read_json("data_json.json")
-
 
         #filter out wrong address entries
 

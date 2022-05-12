@@ -357,6 +357,7 @@ else:
         st.write(""" Here you can see the full participants list with all necessary information. 
         The Running Dinner Program already **allocated all Participants from this list to their final teams** with a random algorithm, which you can see in the first column. 
         Teams were allocated according to their distance to the Final Destination, meaning that the ones farest away from the Final Destination prepare the appetizer, the ones in the middle prepare the main course, and the ones closest to the Final Destination the dessert.
+        Consequently, all teams of the Running Dinner are close to each other after the dessert, making it easy to meet for a drink afterwards.
         Additionally, **all necessary information** (address, e-mail, phonenumber) of both team members are included in the participants list.
         """)
          

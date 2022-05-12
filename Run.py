@@ -287,266 +287,267 @@ else:
         output2 = algo.team()
         file = output2.to_json("data_json.json")
         st.write("Data is up to date!")
+
+
+        output1 = pd.read_json("data_json.json")
+
+
+        #filter out wrong address entries
+
+        wrong = output1[(output1["latitude"] == -89.9999) & (output1["longitude"] == -179.9999)]
+        if wrong.shape[0] != 0:
+            wrong_address = output1[(output1["latitude"] == -89.9999) & (output1["longitude"] == -179.9999)]
+            output1 = output1.drop(output1[(output1["latitude"] == -89.9999) & (output1["longitude"] == -179.9999)].index)
+        else:
+            output1 = output1
+
+        #filter out last entries that cannot be distributet into teams
+
+        if len(output1) % 3 == 2:
+            lost_Data = output1.tail(2)
+            output1 = output1.iloc[:-2 , :] 
+        elif len(output1) % 3 == 1:
+            lost_Data = output1.tail(1)
+            output1 = output1.iloc[:-1 , :]
+        else:
+            output1=output1
+
+        #connect Food Menu to Group ID 1, 2 or 3
+
+        u=0
+        food_menu = list(output1["Group"])
+        for i in food_menu:
+            if i==1:
+                food_menu[u] = "Dessert"
+            elif i==2:
+                food_menu[u] = "Main Course"
+            else:
+                food_menu[u] = "Appetizer"
+            u+=1
+        output1["Menu"] = food_menu
+        output1 = output1.sort_values(["FinalTeam","distance"])
+
+        #clean dataset
+        output1 = output1.drop(columns=["Zeitstempel","TeamID","Group"])
+
+        output1 = output1.reindex(columns=["FinalTeam","Menu", "Name", "Address", "E-Mail", "Phonenumber", "Name Teammember", "E-Mail Partner", "Phonenumber Partner", "Food choice","latitude","longitude","distance"])
+        output1["FinalTeam"] = output1["FinalTeam"].astype(int)
+
+        #build drop down box
+
+        all_teams=["All"]
+        final_team = list(output1["FinalTeam"].unique())
+
+        for i in final_team:
+            all_teams.append(i)
+
+        final_team_choice = st.sidebar.selectbox('Teams:', all_teams)
+        st.sidebar.write('You selected Team:', final_team_choice)
+
+        #code if select all teams
+
+        if final_team_choice == "All":
+
+            output = output1
+
+            st.subheader(""" 👯‍ Participants List:
+            """)
+
+            st.write(""" Here you can see the full participants list with all necessary information. 
+            The Running Dinner Program already **allocated all Participants from this list to their final teams** with a random algorithm, which you can see in the first column. 
+            Teams were allocated according to their distance to the Final Destination, meaning that the ones farest away from the Final Destination prepare the appetizer, the ones in the middle prepare the main course, and the ones closest to the Final Destination the dessert.
+            Consequently, all teams of the Running Dinner are close to each other after the dessert, making it easy to meet for a drink afterwards.
+            Additionally, **all necessary information** (address, e-mail, phonenumber) of both team members are included in the participants list.
+            """)
+
+            hide_dataframe_row_index = """
+                                            <style>
+                                            .row_heading.level0 {display:none}
+                                            .blank {display:none}
+                                            </style>
+                                            """
+
+            # Inject CSS with Markdown
+
+            st.markdown(hide_dataframe_row_index, unsafe_allow_html=True)
+
+            st.dataframe(output)
+
+
+            #get map
+
+            st.subheader(""" 🗺️ Map:
+            """)
+            st.write("Here you can see the **locations of all participants**. Each red dot represents one participant and its address.")
+            map_data = output[["latitude","longitude"]]
+            st.map(map_data)
+
+
+            #count food preference
+
+            st.subheader(""" 🥗 Food Preferences:
+            """)
+            st.write(""" Here you can see the **distribution of different Food Preferences**. 
+            """)
+            output_count = output.groupby("Food choice")["FinalTeam"].count()
+            st.bar_chart(output_count)
+
+            #####################################
+            #Dataset Problems
+
+            st.write("""## 🆘 Dataset Problems:""")
+            st.write("""Here you can find **all dataset-related problems**.""")
+
+            #get teams that submitted to late
+
+            if lost_Data.empty == False:
+                st.subheader(""" 🕑 Wait List:
+                """)
+                st.write(""" Here you can see the list of **all people who signed up too late** for the Running Dinner.
+                """)
+                #st.session_state = output
+                hide_dataframe_row_index = """
+                                                <style>
+                                                .row_heading.level0 {display:none}
+                                                .blank {display:none}
+                                                </style>
+                                                """
+
+                # Inject CSS with Markdown
+                st.markdown(hide_dataframe_row_index, unsafe_allow_html=True)
+
+                lost_Data = lost_Data.drop(columns=["index","Zeitstempel","latitude", "longitude","distance","TeamID","Group","FinalTeam"])
+                st.dataframe(lost_Data)
+            else: 
+                st.write("No team submitted to late!")
+
+
+            #table for teams that submitted a wrong address
+
+            if wrong_address.empty == False:
+                st.subheader(""" ❌ Wrong Address:
+                """)
+                st.write(""" Here you can find a list of **all people that did not type in their address correctly**.
+                First, contact those participants privately, verify their address and try to adapt it in a way (Spreadsheet linked below) that they are included in the algorithm.
+                Here, you can **access the** [Spreadsheet](https://docs.google.com/spreadsheets/d/1C1Q7QQ8ZVhCP1ShHdmds6N2kxr1BX8RUqCeNnt4JEPk/edit?usp=sharing) with the answers from the Running Dinner to **correct the address manually**.
+                """)
+                hide_dataframe_row_index = """
+                                                <style>
+                                                .row_heading.level0 {display:none}
+                                                .blank {display:none}
+                                                </style>
+                                                """
+
+                # Inject CSS with Markdown
+                st.markdown(hide_dataframe_row_index, unsafe_allow_html=True)
+
+                wrong_address = wrong_address.drop(columns=["index","Zeitstempel","TeamID","Group","FinalTeam"])                                               
+                st.dataframe(wrong_address)
+            else: 
+                st.write("No team submitted a wrong address!")
+
+        #code if select specific team                          
+        else:
+
+            output = output1
+
+            st.subheader(""" 👯‍ Participants List:
+            """)
+
+            st.write(f""" Here you can see the participants list of the Final Team {final_team_choice} with all necessary information. 
+            """)
+
+            st.session_state = output
+            hide_dataframe_row_index = """
+                                            <style>
+                                            .row_heading.level0 {display:none}
+                                            .blank {display:none}
+                                            </style>
+                                            """
+
+            # Inject CSS with Markdown
+            st.markdown(hide_dataframe_row_index, unsafe_allow_html=True)
+            data = output[output["FinalTeam"] == final_team_choice]
+            st.dataframe(data)
+
+
+            #get map
+
+            st.subheader(""" 🗺️ Map:
+            """)
+            st.write(f"Here you can see the **locations of all participants within Final Team {final_team_choice}**. Each red dot represents one participant and its address.")
+
+            map_data = data[["latitude","longitude"]]
+            st.map(map_data)
+
+
+            #count food preference
+
+            st.subheader(""" 🥗 Food Preferences:
+            """)
+            st.write(f""" Here you can see the **distribution of different Food Preferenceswithin Final Team {final_team_choice}**. 
+            """)
+
+            data_count = data.groupby("Food choice")["FinalTeam"].count()
+            st.bar_chart(data_count)
+
+            #####################################
+            #Dataset Problems
+
+            st.write("""## 🆘 Dataset Problems:""")
+            st.write("""Here you can find **all dataset-related problems**.""")
+
+
+            #get teams that submitted to late
+
+            if lost_Data.empty == False:
+                st.subheader(""" 🕑 Wait List:
+                """)
+                st.write(""" Here you can see the list of **all people who signed up too late** for the Running Dinner.
+                """)
+                hide_dataframe_row_index = """
+                                                <style>
+                                                .row_heading.level0 {display:none}
+                                                .blank {display:none}
+                                                </style>
+                                                """
+
+                # Inject CSS with Markdown
+                st.markdown(hide_dataframe_row_index, unsafe_allow_html=True)
+
+                lost_Data = lost_Data.drop(columns=["index","Zeitstempel","latitude", "longitude","distance","TeamID","Group","FinalTeam"])
+                st.dataframe(lost_Data)
+
+            else: 
+                st.write("No team submitted to late!")
+
+            #table for teams that submitted a wrong address
+            if wrong_address.empty == False:
+                st.subheader(""" ❌ Wrong Address:
+                """)
+                st.write(""" Here you can find a list of **all people that did not type in their address correctly**.
+                First, contact those participants privately, verify their address and try to adapt it in a way (Spreadsheet linked below) that they are included in the algorithm.
+                Here, you can **access the** [Spreadsheet](https://docs.google.com/spreadsheets/d/1C1Q7QQ8ZVhCP1ShHdmds6N2kxr1BX8RUqCeNnt4JEPk/edit?usp=sharing) with the answers from the Running Dinner to **correct the address manually**.
+                """)
+
+                hide_dataframe_row_index = """
+                                                <style>
+                                                .row_heading.level0 {display:none}
+                                                .blank {display:none}
+                                                </style>
+                                                """
+
+                # Inject CSS with Markdown
+                st.markdown(hide_dataframe_row_index, unsafe_allow_html=True)
+
+                wrong_address = wrong_address.drop(columns=["index","Zeitstempel","TeamID","Group","FinalTeam"])      
+                st.dataframe(wrong_address)
+
+            else: 
+                st.write("No team submitted a wrong address!")
     else:
         st.write("Data is not up to date!")
-
-    output1 = pd.read_json("data_json.json")
-    
-    
-    #filter out wrong address entries
-    
-    wrong = output1[(output1["latitude"] == -89.9999) & (output1["longitude"] == -179.9999)]
-    if wrong.shape[0] != 0:
-        wrong_address = output1[(output1["latitude"] == -89.9999) & (output1["longitude"] == -179.9999)]
-        output1 = output1.drop(output1[(output1["latitude"] == -89.9999) & (output1["longitude"] == -179.9999)].index)
-    else:
-        output1 = output1
-    
-    #filter out last entries that cannot be distributet into teams
-    
-    if len(output1) % 3 == 2:
-        lost_Data = output1.tail(2)
-        output1 = output1.iloc[:-2 , :] 
-    elif len(output1) % 3 == 1:
-        lost_Data = output1.tail(1)
-        output1 = output1.iloc[:-1 , :]
-    else:
-        output1=output1
         
-    #connect Food Menu to Group ID 1, 2 or 3
-    
-    u=0
-    food_menu = list(output1["Group"])
-    for i in food_menu:
-        if i==1:
-            food_menu[u] = "Dessert"
-        elif i==2:
-            food_menu[u] = "Main Course"
-        else:
-            food_menu[u] = "Appetizer"
-        u+=1
-    output1["Menu"] = food_menu
-    output1 = output1.sort_values(["FinalTeam","distance"])
-    
-    #clean dataset
-    output1 = output1.drop(columns=["Zeitstempel","TeamID","Group"])
-    
-    output1 = output1.reindex(columns=["FinalTeam","Menu", "Name", "Address", "E-Mail", "Phonenumber", "Name Teammember", "E-Mail Partner", "Phonenumber Partner", "Food choice","latitude","longitude","distance"])
-    output1["FinalTeam"] = output1["FinalTeam"].astype(int)
-    
-    #build drop down box
-    
-    all_teams=["All"]
-    final_team = list(output1["FinalTeam"].unique())
-                        
-    for i in final_team:
-        all_teams.append(i)
-                            
-    final_team_choice = st.sidebar.selectbox('Teams:', all_teams)
-    st.sidebar.write('You selected Team:', final_team_choice)
-                        
-    #code if select all teams
-    
-    if final_team_choice == "All":
-
-        output = output1
-        
-        st.subheader(""" 👯‍ Participants List:
-        """)
-        
-        st.write(""" Here you can see the full participants list with all necessary information. 
-        The Running Dinner Program already **allocated all Participants from this list to their final teams** with a random algorithm, which you can see in the first column. 
-        Teams were allocated according to their distance to the Final Destination, meaning that the ones farest away from the Final Destination prepare the appetizer, the ones in the middle prepare the main course, and the ones closest to the Final Destination the dessert.
-        Consequently, all teams of the Running Dinner are close to each other after the dessert, making it easy to meet for a drink afterwards.
-        Additionally, **all necessary information** (address, e-mail, phonenumber) of both team members are included in the participants list.
-        """)
-         
-        hide_dataframe_row_index = """
-                                        <style>
-                                        .row_heading.level0 {display:none}
-                                        .blank {display:none}
-                                        </style>
-                                        """
-
-        # Inject CSS with Markdown
-        
-        st.markdown(hide_dataframe_row_index, unsafe_allow_html=True)
-
-        st.dataframe(output)
-
-
-        #get map
-        
-        st.subheader(""" 🗺️ Map:
-        """)
-        st.write("Here you can see the **locations of all participants**. Each red dot represents one participant and its address.")
-        map_data = output[["latitude","longitude"]]
-        st.map(map_data)
-
-
-        #count food preference
-        
-        st.subheader(""" 🥗 Food Preferences:
-        """)
-        st.write(""" Here you can see the **distribution of different Food Preferences**. 
-        """)
-        output_count = output.groupby("Food choice")["FinalTeam"].count()
-        st.bar_chart(output_count)
-        
-        #####################################
-        #Dataset Problems
-        
-        st.write("""## 🆘 Dataset Problems:""")
-        st.write("""Here you can find **all dataset-related problems**.""")
-        
-        #get teams that submitted to late
-        
-        if lost_Data.empty == False:
-            st.subheader(""" 🕑 Wait List:
-            """)
-            st.write(""" Here you can see the list of **all people who signed up too late** for the Running Dinner.
-            """)
-            #st.session_state = output
-            hide_dataframe_row_index = """
-                                            <style>
-                                            .row_heading.level0 {display:none}
-                                            .blank {display:none}
-                                            </style>
-                                            """
-
-            # Inject CSS with Markdown
-            st.markdown(hide_dataframe_row_index, unsafe_allow_html=True)
-            
-            lost_Data = lost_Data.drop(columns=["index","Zeitstempel","latitude", "longitude","distance","TeamID","Group","FinalTeam"])
-            st.dataframe(lost_Data)
-        else: 
-            st.write("No team submitted to late!")
-         
-        
-        #table for teams that submitted a wrong address
-        
-        if wrong_address.empty == False:
-            st.subheader(""" ❌ Wrong Address:
-            """)
-            st.write(""" Here you can find a list of **all people that did not type in their address correctly**.
-            First, contact those participants privately, verify their address and try to adapt it in a way (Spreadsheet linked below) that they are included in the algorithm.
-            Here, you can **access the** [Spreadsheet](https://docs.google.com/spreadsheets/d/1C1Q7QQ8ZVhCP1ShHdmds6N2kxr1BX8RUqCeNnt4JEPk/edit?usp=sharing) with the answers from the Running Dinner to **correct the address manually**.
-            """)
-            hide_dataframe_row_index = """
-                                            <style>
-                                            .row_heading.level0 {display:none}
-                                            .blank {display:none}
-                                            </style>
-                                            """
-
-            # Inject CSS with Markdown
-            st.markdown(hide_dataframe_row_index, unsafe_allow_html=True)
-            
-            wrong_address = wrong_address.drop(columns=["index","Zeitstempel","TeamID","Group","FinalTeam"])                                               
-            st.dataframe(wrong_address)
-        else: 
-            st.write("No team submitted a wrong address!")
-    
-    #code if select specific team                          
-    else:
-
-        output = output1
-        
-        st.subheader(""" 👯‍ Participants List:
-        """)
-        
-        st.write(f""" Here you can see the participants list of the Final Team {final_team_choice} with all necessary information. 
-        """)
-                                
-        st.session_state = output
-        hide_dataframe_row_index = """
-                                        <style>
-                                        .row_heading.level0 {display:none}
-                                        .blank {display:none}
-                                        </style>
-                                        """
-
-        # Inject CSS with Markdown
-        st.markdown(hide_dataframe_row_index, unsafe_allow_html=True)
-        data = output[output["FinalTeam"] == final_team_choice]
-        st.dataframe(data)
-
-
-        #get map
-        
-        st.subheader(""" 🗺️ Map:
-        """)
-        st.write(f"Here you can see the **locations of all participants within Final Team {final_team_choice}**. Each red dot represents one participant and its address.")
-   
-        map_data = data[["latitude","longitude"]]
-        st.map(map_data)
-
-
-        #count food preference
-        
-        st.subheader(""" 🥗 Food Preferences:
-        """)
-        st.write(f""" Here you can see the **distribution of different Food Preferenceswithin Final Team {final_team_choice}**. 
-        """)
-        
-        data_count = data.groupby("Food choice")["FinalTeam"].count()
-        st.bar_chart(data_count)
-        
-        #####################################
-        #Dataset Problems
-        
-        st.write("""## 🆘 Dataset Problems:""")
-        st.write("""Here you can find **all dataset-related problems**.""")
-           
-        
-        #get teams that submitted to late
-        
-        if lost_Data.empty == False:
-            st.subheader(""" 🕑 Wait List:
-            """)
-            st.write(""" Here you can see the list of **all people who signed up too late** for the Running Dinner.
-            """)
-            hide_dataframe_row_index = """
-                                            <style>
-                                            .row_heading.level0 {display:none}
-                                            .blank {display:none}
-                                            </style>
-                                            """
-
-            # Inject CSS with Markdown
-            st.markdown(hide_dataframe_row_index, unsafe_allow_html=True)
-            
-            lost_Data = lost_Data.drop(columns=["index","Zeitstempel","latitude", "longitude","distance","TeamID","Group","FinalTeam"])
-            st.dataframe(lost_Data)
-
-        else: 
-            st.write("No team submitted to late!")
-
-        #table for teams that submitted a wrong address
-        if wrong_address.empty == False:
-            st.subheader(""" ❌ Wrong Address:
-            """)
-            st.write(""" Here you can find a list of **all people that did not type in their address correctly**.
-            First, contact those participants privately, verify their address and try to adapt it in a way (Spreadsheet linked below) that they are included in the algorithm.
-            Here, you can **access the** [Spreadsheet](https://docs.google.com/spreadsheets/d/1C1Q7QQ8ZVhCP1ShHdmds6N2kxr1BX8RUqCeNnt4JEPk/edit?usp=sharing) with the answers from the Running Dinner to **correct the address manually**.
-            """)
-           
-            hide_dataframe_row_index = """
-                                            <style>
-                                            .row_heading.level0 {display:none}
-                                            .blank {display:none}
-                                            </style>
-                                            """
-
-            # Inject CSS with Markdown
-            st.markdown(hide_dataframe_row_index, unsafe_allow_html=True)
-            
-            wrong_address = wrong_address.drop(columns=["index","Zeitstempel","TeamID","Group","FinalTeam"])      
-            st.dataframe(wrong_address)
-            
-        else: 
-            st.write("No team submitted a wrong address!")
-
 #######################################################################################################
 #######################################################################################################
 

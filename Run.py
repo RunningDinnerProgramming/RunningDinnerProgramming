@@ -378,7 +378,8 @@ else:
 
         #get map
         
-        st.subheader("""### 🗺️ Map""")
+        st.subheader("""### 🗺️ Map
+        """)
         st.write("Here you can see the locations of all participants.")
         map_data = output[["latitude","longitude"]]
         st.map(map_data)
@@ -386,7 +387,8 @@ else:
 
         #count food preference
         
-        st.subheader("""### 🥗 Food Preferences""")
+        st.subheader("""### 🥗 Food Preferences
+        """)
         
         output_count = output.groupby("Food choice")["FinalTeam"].count()
         st.bar_chart(output_count)

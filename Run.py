@@ -476,7 +476,7 @@ else:
         
         st.subheader(""" 🗺️ Map:
         """)
-        st.write(f"Here you can see the **locations of all participants** within Final Team {final_team_choice}. Each red dot represents one participant and its address.")
+        st.write(f"Here you can see the **locations of all participants within Final Team {final_team_choice}**. Each red dot represents one participant and its address.")
    
         map_data = data[["latitude","longitude"]]
         st.map(map_data)
@@ -486,7 +486,7 @@ else:
         
         st.subheader(""" 🥗 Food Preferences:
         """)
-        st.write(""" Here you can see the **distribution of different Food Preferences**. 
+        st.write(f""" Here you can see the **distribution of different Food Preferenceswithin Final Team {final_team_choice}**. 
         """)
         
         data_count = data.groupby("Food choice")["FinalTeam"].count()

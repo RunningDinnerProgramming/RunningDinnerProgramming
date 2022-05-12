@@ -401,8 +401,9 @@ else:
         #get teams that submitted to late
         
         if lost_Data.empty == False:
-            st.write("""### 🕑 Wait List: 
-            Here you can the a list of all people who signed up too late for the Running Dinner.
+            st.subheader(""" 🕑 Wait List:
+            """)
+            st.write(""" Here you can the a list of all people who signed up too late for the Running Dinner.
             Please make sure that you use their contact information to apologize and tell them where all participants meet after the Running Dinner for a drink so they can join later.
             """)
             #st.session_state = output
@@ -425,8 +426,9 @@ else:
         #table for teams that submitted a wrong address
         
         if wrong_address.empty == False:
-            st.write("""### ❌ Wrong Address:
-            Here you can find a list of all people that did not type in their address correctly. 
+            st.subheader(""" ❌ Wrong Address:
+            """)
+            st.write(""" Here you can find a list of all people that did not type in their address correctly.
             Make sure that you access the spreadsheet with the answers from the Running Dinner and correct the address manually.
             """)
             hide_dataframe_row_index = """

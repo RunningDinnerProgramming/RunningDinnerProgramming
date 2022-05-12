@@ -378,7 +378,7 @@ else:
         
         st.subheader(""" 🗺️ Map:
         """)
-        st.write("Here you can see the locations of all participants. Each red dot representsone participant and its address. ")
+        st.write("Here you can see the **locations of all participants**. Each red dot represents one participant and its address.")
         map_data = output[["latitude","longitude"]]
         st.map(map_data)
 
@@ -387,7 +387,7 @@ else:
         
         st.subheader(""" 🥗 Food Preferences:
         """)
-        st.write(""" Here you can the distribution of different Food Preferences. 
+        st.write(""" Here you can the **distribution of different Food Preferences**. 
         """)
         output_count = output.groupby("Food choice")["FinalTeam"].count()
         st.bar_chart(output_count)
@@ -396,15 +396,15 @@ else:
         #Dataset Problems
         
         st.write("""## 🆘 Dataset Problems:""")
-        st.write("""Here you can find all dataset-related problems.""")
+        st.write("""Here you can find **all dataset-related problems**.""")
         
         #get teams that submitted to late
         
         if lost_Data.empty == False:
             st.subheader(""" 🕑 Wait List:
             """)
-            st.write(""" Here you can the a list of all people who signed up too late for the Running Dinner.
-            Please make sure that you use their contact information to apologize and tell them where all participants meet after the Running Dinner for a drink so they can join later.
+            st.write(""" Here you can the a list of **all people who signed up too late** for the Running Dinner.
+            Please make sure that you **use their contact information to apologize** and tell them where all participants meet after the Running Dinner for a drink so they can join later.
             """)
             #st.session_state = output
             hide_dataframe_row_index = """
@@ -428,8 +428,8 @@ else:
         if wrong_address.empty == False:
             st.subheader(""" ❌ Wrong Address:
             """)
-            st.write(""" Here you can find a list of all people that did not type in their address correctly.
-            Make sure that you access the spreadsheet with the answers from the Running Dinner and correct the address manually.
+            st.write(""" Here you can find a list of **all people that did not type in their address correctly**.
+            Make sure that you **access the** [Spreadsheet](https://docs.google.com/spreadsheets/d/1C1Q7QQ8ZVhCP1ShHdmds6N2kxr1BX8RUqCeNnt4JEPk/edit?usp=sharing) with the answers from the Running Dinner and **correct the address manually**.
             """)
             hide_dataframe_row_index = """
                                             <style>

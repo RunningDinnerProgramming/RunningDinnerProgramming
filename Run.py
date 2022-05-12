@@ -137,7 +137,17 @@ class algorithm:
     def team(self):
         
         dataT = algorithm.geo(self)
-        
+        """
+        #filter out wrong address entries
+        wrong_address = pd.DataFrame()
+        wrong_address = dataT[dataT["latitude"] == -89.9999]
+
+        if wrong_address.shape[0] != 0:
+            dataT = dataT[dataT["latitude"] != -89.9999]
+            #dataT.drop(dataT[(dataT["latitude"] == -89.9999) & (dataT["longitude"] == -179.9999)].index ,inplace = True)
+        else:
+            dataT=dataT
+        """     
         wrong_address = pd.DataFrame()
         wrong_address = dataT[(dataT["latitude"] == -89.9999) & (dataT["longitude"] == -179.9999)]
         if wrong_address.shape[0] != 0:
@@ -467,7 +477,10 @@ else:
 
         #count food preference
         
-        st.subheader("Food Preferences")
+        st.subheader(""" 🥗 Food Preferences:
+        """)
+        st.write(""" Here you can see the **distribution of different Food Preferences**. 
+        """)
         
         data_count = data.groupby("Food choice")["FinalTeam"].count()
         st.bar_chart(data_count)
@@ -475,13 +488,17 @@ else:
         #####################################
         #Dataset Problems
         
-        st.write("""## Dataset Problems:""")
-        st.write("here you can find all problems")    
+        st.write("""## 🆘 Dataset Problems:""")
+        st.write("""Here you can find **all dataset-related problems**.""")
+           
         
         #get teams that submitted to late
         
         if lost_Data.empty == False:
-            st.write("""### Wait List:""")
+            st.subheader(""" 🕑 Wait List:
+            """)
+            st.write(""" Here you can see the list of **all people who signed up too late** for the Running Dinner.
+            """)
             hide_dataframe_row_index = """
                                             <style>
                                             .row_heading.level0 {display:none}
@@ -500,7 +517,13 @@ else:
 
         #table for teams that submitted a wrong address
         if wrong_address.empty == False:
-            st.write("""### Wrong Address:""")
+            st.subheader(""" ❌ Wrong Address:
+            """)
+            st.write(""" Here you can find a list of **all people that did not type in their address correctly**.
+            First, contact those participants privately, verify their address and try to adapt it in a way (Spreadsheet linked below) that they are included in the algorithm.
+            Here, you can **access the** [Spreadsheet](https://docs.google.com/spreadsheets/d/1C1Q7QQ8ZVhCP1ShHdmds6N2kxr1BX8RUqCeNnt4JEPk/edit?usp=sharing) with the answers from the Running Dinner to **correct the address manually**.
+            """)
+           
             hide_dataframe_row_index = """
                                             <style>
                                             .row_heading.level0 {display:none}

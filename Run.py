@@ -450,6 +450,12 @@ else:
     else:
 
         output = output1
+        
+        st.subheader(""" 👯‍ Participants List:
+        """)
+        
+        st.write(""" Here you can see the participants list of the selected with all necessary information. 
+        """)
                                 
         st.session_state = output
         hide_dataframe_row_index = """

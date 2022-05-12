@@ -256,12 +256,11 @@ Here you can access the README file for the Running Dinner Program for further i
 
 
 
+st.subheader(""" 📍 Final Destination:
+        """)
 
-st.write("""### 📍 Final Destination:
 
-
-
-❗ Important ❗
+st.write(""" ❗ Important ❗
 
 **Please use the following address format** for the final destination:  Streetname Housenumber City 
 

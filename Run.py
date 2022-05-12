@@ -355,11 +355,8 @@ else:
         """)
         
         st.write(""" Here you can see the full participants list with all necessary information. 
-        
         The Running Dinner Program already **allocated all Participants from this list to their final teams**, which you can see in the first column. 
-        
         Even better, **every participant was already matched with a teampartner**, which you can see i the seventh column. 
-        
         Additionally, **all necessary information** (address, e-mail, phonenumber) of both team members are included in the participants list.
         """)
          
@@ -381,7 +378,7 @@ else:
         
         st.subheader(""" 🗺️ Map:
         """)
-        st.write("Here you can see the locations of all participants.")
+        st.write("Here you can see the locations of all participants. Each red dot representsone participant and its address. ")
         map_data = output[["latitude","longitude"]]
         st.map(map_data)
 
@@ -390,7 +387,8 @@ else:
         
         st.subheader(""" 🥗 Food Preferences:
         """)
-        
+        st.write(""" Here you can the distribution of different Food Preferences. 
+        """)
         output_count = output.groupby("Food choice")["FinalTeam"].count()
         st.bar_chart(output_count)
         
@@ -398,12 +396,16 @@ else:
         #Dataset Problems
         
         st.write("""## 🆘 Dataset Problems:""")
-        st.write("here you can find all problems")
+        st.write("""Here you can find all dataset-related problems.""")
         
         #get teams that submitted to late
         
         if lost_Data.empty == False:
-            st.write("""### 🕑 Wait List:""")
+            st.write("""### 🕑 Wait List:
+            Here you can the a list of all people who signed up too late for the Running Dinner.
+            
+            Please make sure that you use their contact information to apologize and tell them where all participants meet after the Running Dinner for a drink so they can join later.
+            """)
             #st.session_state = output
             hide_dataframe_row_index = """
                                             <style>
@@ -424,7 +426,12 @@ else:
         #table for teams that submitted a wrong address
         
         if wrong_address.empty == False:
-            st.write("""### ❌ Wrong Address:""")
+            st.write("""### ❌ Wrong Address:
+            
+            Here you can find a list of all people that did not type in their address correctly. 
+            
+            Make sure that you access the spreadsheet with the answers from the Running Dinner and correct the address manually.
+            """)
             hide_dataframe_row_index = """
                                             <style>
                                             .row_heading.level0 {display:none}

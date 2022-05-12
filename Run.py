@@ -467,7 +467,10 @@ else:
 
         #get map
         
-        st.subheader("Map")
+        st.subheader(""" 🗺️ Map:
+        """)
+        st.write("Here you can see the **locations of all participants**. Each red dot represents one participant and its address.")
+   
         map_data = data[["latitude","longitude"]]
         st.map(map_data)
 

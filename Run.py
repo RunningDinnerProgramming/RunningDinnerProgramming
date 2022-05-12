@@ -455,7 +455,7 @@ else:
         st.subheader(""" 👯‍ Participants List:
         """)
         
-        st.write(""" Here you can see the participants list of the selected with all necessary information. 
+        st.write(f""" Here you can see the participants list of the Final Team {final_team_choice} with all necessary information. 
         """)
                                 
         st.session_state = output
@@ -476,7 +476,7 @@ else:
         
         st.subheader(""" 🗺️ Map:
         """)
-        st.write("Here you can see the **locations of all participants**. Each red dot represents one participant and its address.")
+        st.write(f"Here you can see the **locations of all participants** within Final Team {final_team_choice}. Each red dot represents one participant and its address.")
    
         map_data = data[["latitude","longitude"]]
         st.map(map_data)

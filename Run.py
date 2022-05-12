@@ -350,9 +350,11 @@ else:
     if final_team_choice == "All":
 
         output = output1
-
-        st.write("""### 👯‍♀️ Participants List:
-        Here you can see the full participants list with all necessary information.
+        
+        st.subheader(""" 👯‍ Participants List:
+        """)
+        
+        st.write(""" Here you can see the full participants list with all necessary information.
         
         The Running Dinner Program already **allocated all Participants from this list to their final teams**, which you can see in the first column.
         

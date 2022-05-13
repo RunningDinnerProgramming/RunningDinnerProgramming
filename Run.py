@@ -27,7 +27,7 @@ from email.message import EmailMessage
 
 import git
 
-
+#The class Data is accessing the google spreadsheet data by using the credentials.json and the toke.pickle files as access tokens
 class Data:
     
     def __init__(self,SCOPES,SPREADSHEET_ID,DATA_TO_PULL):
@@ -35,6 +35,7 @@ class Data:
         self.SPREADSHEET_ID = SPREADSHEET_ID
         self.DATA_TO_PULL = DATA_TO_PULL
         
+    #google api access   
     def gsheet_api_check(self,SCOPES):
         creds = None
         if os.path.exists('token.pickle'):
@@ -50,7 +51,8 @@ class Data:
             with open('token.pickle', 'wb') as token:
                 pickle.dump(creds, token)
         return creds
-
+    
+    #data pull from the excel spreadsheet and storing it into a dictionary
     def pull_sheet_data(self):
         creds = self.gsheet_api_check(self.SCOPES)
         service = build('sheets', 'v4', credentials=creds)
@@ -72,30 +74,34 @@ class Data:
             return df
 
         
-
+# Running Dinner Algorithm that imports the data from the spreadsheet by calling the class Data, 
+# transforming the addresses into distances to the final destination and finally randomly distributing the teams to final teams of 3
 class algorithm:
     
-    def __init__(self,SCOPES,SPREADSHEET_ID,DATA_TO_PULL,start_location):
+    def __init__(self,SCOPES,SPREADSHEET_ID,DATA_TO_PULL,final_location):
         self.SCOPES = SCOPES
         self.SPREADSHEET_ID = SPREADSHEET_ID
         self.DATA_TO_PULL = DATA_TO_PULL
-        self.start_location = start_location
-
+        self.final_location = final_location
+        
+    # calling the class Data to get the data
     def get_data(self):
         RD_data = Data(self.SCOPES, self.SPREADSHEET_ID, self.DATA_TO_PULL)
         data = RD_data.pull_sheet_data()
         return data
-
-    def start(self):
+    
+    # getting the latitude and longitude from the final location of the Running Dinner
+    def final(self):
         #set up geolocator application
         geolocator = Nominatim(user_agent="RunningDinner")
 
         #set center of map
         #start_location = "Rua do Forno do Tijolo 29D Lisboa"
-        start_location_code = geolocator.geocode(self.start_location)
-        start_location_lat_long = (start_location_code.latitude,start_location_code.longitude)
-        return start_location_lat_long
-
+        final_location_code = geolocator.geocode(self.start_location)
+        final_location_lat_long = (final_location_code.latitude,final_location_code.longitude)
+        return final_location_lat_long
+    
+    # getting the latitude and longitude of each address + calculating distance (distinction between whether or not geopy can read the address or not)
     def geo(self):    
     
         #set up geolocator application
@@ -116,14 +122,14 @@ class algorithm:
                 help_lat = -89.9999
                 help_long = -179.9999
                 end_location_lat_long = (help_lat,help_long)
-                distance = (great_circle(algorithm.start(self), end_location_lat_long).miles)*kilometer_miles
+                distance = (great_circle(algorithm.final(self), end_location_lat_long).miles)*kilometer_miles
                 data[key]["latitude"] = help_lat
                 data[key]["longitude"] = help_long
                 data[key]["distance"] = distance
             else:
                 end_location_code = geolocator.geocode(end_location)
                 end_location_lat_long = (end_location_code.latitude,end_location_code.longitude)
-                distance = (great_circle(algorithm.start(self), end_location_lat_long).miles)*kilometer_miles
+                distance = (great_circle(algorithm.final(self), end_location_lat_long).miles)*kilometer_miles
                 data[key]["latitude"] = end_location_lat_long[0]
                 data[key]["longitude"] = end_location_lat_long[1]
                 data[key]["distance"] = distance
@@ -133,21 +139,11 @@ class algorithm:
         dataT = df.transpose()
         
         return dataT
-        
+    
+    # running dinner algorithm to randomly create final teams of 3 by distance  
     def team(self):
         
         dataT = algorithm.geo(self)
-        """
-        #filter out wrong address entries
-        wrong_address = pd.DataFrame()
-        wrong_address = dataT[dataT["latitude"] == -89.9999]
-
-        if wrong_address.shape[0] != 0:
-            dataT = dataT[dataT["latitude"] != -89.9999]
-            #dataT.drop(dataT[(dataT["latitude"] == -89.9999) & (dataT["longitude"] == -179.9999)].index ,inplace = True)
-        else:
-            dataT=dataT
-        """     
         wrong_address = pd.DataFrame()
         wrong_address = dataT[(dataT["latitude"] == -89.9999) & (dataT["longitude"] == -179.9999)]
         if wrong_address.shape[0] != 0:
@@ -211,7 +207,7 @@ class algorithm:
 #######################################################################################################
 #######################################################################################################
 
-    
+# set page configurations to wide and expand the sidebar when opening the page    
 st.set_page_config(
     layout="wide",
     initial_sidebar_state="expanded",
@@ -219,7 +215,7 @@ st.set_page_config(
 st.write("# Running Dinner")
 
 #####################################
-#pre set input
+#pre set input for the classes
 
 SCOPES=['https://www.googleapis.com/auth/spreadsheets']
 SPREADSHEET_ID = '1C1Q7QQ8ZVhCP1ShHdmds6N2kxr1BX8RUqCeNnt4JEPk'
@@ -272,6 +268,7 @@ Example: Cais da Viscondessa Lisboa
 final_destination = st.text_input('Please enter the final address here:')
 st.write('The Final location is:', final_destination)
 
+# calling the class algorithm
 algo = algorithm(SCOPES,SPREADSHEET_ID,DATA_TO_PULL,final_destination)
 
 st.sidebar.subheader(' Quick  Explore')
@@ -281,7 +278,7 @@ if final_destination == "":
 
 else:
     #####################################
-    #import new Data
+    #import new Data and store each import into a new json file
     
     if st.button('Import'):
         output2 = algo.team()
@@ -289,7 +286,8 @@ else:
         st.write("Data is up to date!")
     else:
         st.write("Data is not up to date!")
-
+        
+    # opening the data json file again to have a fixed data import 
     output1 = pd.read_json("data_json.json")
     
     
@@ -345,7 +343,7 @@ else:
     final_team_choice = st.sidebar.selectbox('Teams:', all_teams)
     st.sidebar.write('You selected Team:', final_team_choice)
                         
-    #code if select all teams
+    #code if select all teams in filter
     
     if final_team_choice == "All":
 
@@ -446,7 +444,7 @@ else:
         else: 
             st.write("No team submitted a wrong address!")
     
-    #code if select specific team                          
+    #code if select specific team in filter                         
     else:
 
         output = output1

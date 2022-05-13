@@ -96,7 +96,6 @@ class algorithm:
         geolocator = Nominatim(user_agent="RunningDinner")
 
         #set center of map
-        #start_location = "Rua do Forno do Tijolo 29D Lisboa"
         final_location_code = geolocator.geocode(self.final_location)
         final_location_lat_long = (final_location_code.latitude,final_location_code.longitude)
         return final_location_lat_long
@@ -358,7 +357,7 @@ else:
         Consequently, all teams of the Running Dinner are close to each other after the dessert, making it easy to meet for a drink afterwards.
         Additionally, **all necessary information** (**address**, **e-mail**, **phonenumber**) of both team members are included in the participants list.
         """)
-         
+        #hide index from dataframe in interface 
         hide_dataframe_row_index = """
                                         <style>
                                         .row_heading.level0 {display:none}
@@ -404,7 +403,8 @@ else:
             """)
             st.write(""" Here you can see the list of **all people who signed up too late** for the Running Dinner.
             """)
-            #st.session_state = output
+            
+            #hide index from dataframe in interface
             hide_dataframe_row_index = """
                                             <style>
                                             .row_heading.level0 {display:none}
@@ -429,6 +429,8 @@ else:
             st.write(""" Here you can find a list of **all people that did not type in their address correctly**.
             Contact those participants privately, verify their address and try to **adapt it manually in the [Spreadsheet](https://docs.google.com/spreadsheets/d/1C1Q7QQ8ZVhCP1ShHdmds6N2kxr1BX8RUqCeNnt4JEPk/edit?usp=sharing)** so that they are included in the algorithm.
             """)
+            
+            #hide index from dataframe in interface
             hide_dataframe_row_index = """
                                             <style>
                                             .row_heading.level0 {display:none}
@@ -455,7 +457,7 @@ else:
         st.write(f""" Here you can see the **participants list of the Final Team {final_team_choice}** with all necessary information. 
         """)
                                 
-        st.session_state = output
+        #hide index from dataframe in interface
         hide_dataframe_row_index = """
                                         <style>
                                         .row_heading.level0 {display:none}
@@ -503,6 +505,8 @@ else:
             """)
             st.write(""" Here you can see the list of **all people who signed up too late** for the Running Dinner.
             """)
+            
+            #hide index from dataframe in interface
             hide_dataframe_row_index = """
                                             <style>
                                             .row_heading.level0 {display:none}
@@ -526,7 +530,8 @@ else:
             st.write(""" Here you can find a list of **all people that did not type in their address correctly**.
             Contact those participants privately, verify their address and try to **adapt it manually in the [Spreadsheet](https://docs.google.com/spreadsheets/d/1C1Q7QQ8ZVhCP1ShHdmds6N2kxr1BX8RUqCeNnt4JEPk/edit?usp=sharing)** so that they are included in the algorithm.
             """)
-           
+            
+            #hide index from dataframe in interface
             hide_dataframe_row_index = """
                                             <style>
                                             .row_heading.level0 {display:none}

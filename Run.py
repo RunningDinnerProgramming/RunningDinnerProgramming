@@ -245,10 +245,10 @@ Here you can access the Running Dinner Survey ➡️ [**Running Dinner Survey**]
 
 
 
-Here you can access our GitHub profile for the Running Dinner Program for further information ➡️ [GitHub](https://github.com/RunningDinnerProgramming/RunningDinnerProgramming)
+Here you can access our GitHub profile for the Running Dinner Program for further information ➡️ [**GitHub**](https://github.com/RunningDinnerProgramming/RunningDinnerProgramming)
 
 
-Here you can access the answers from the Running Dinner Survey ➡️ [Spreadsheet](https://docs.google.com/spreadsheets/d/1C1Q7QQ8ZVhCP1ShHdmds6N2kxr1BX8RUqCeNnt4JEPk/edit?usp=sharing)
+Here you can access the answers from the Running Dinner Survey ➡️ [**Spreadsheet**](https://docs.google.com/spreadsheets/d/1C1Q7QQ8ZVhCP1ShHdmds6N2kxr1BX8RUqCeNnt4JEPk/edit?usp=sharing)
 
 ❗ Important ❗   If you want to create a new Running Dinner, you have to **clear ALL answers from the spreadsheet above**!
 """)
@@ -260,9 +260,9 @@ st.subheader(""" 📍 Final Destination:
         """)
 
 
-st.write(""" ❗ Important ❗
+st.write(""" ❗ Important ❗   
 
-**Please use the following address format** for the final destination:  Streetname Housenumber City 
+**Please use the following address format** for the final destination:  Streetname <space> Housenumber <space> City 
 
 Example: Cais da Viscondessa Lisboa
 """)
@@ -354,11 +354,11 @@ else:
         st.subheader(""" 👯‍ Participants List:
         """)
         
-        st.write(""" Here you can see the full participants list with all necessary information. 
+        st.write(""" Here you can see the **full participants list** with all necessary information. 
         The Running Dinner Program already **allocated all Participants from this list to their final teams** with a random algorithm, which you can see in the first column. 
-        Teams were allocated according to their distance to the Final Destination, meaning that the ones farest away from the Final Destination prepare the appetizer, the ones in the middle prepare the main course, and the ones closest to the Final Destination the dessert.
+        Teams were **allocated according to their distance to the Final Destination**, meaning that the ones farest away from the Final Destination prepare the appetizer, the ones in the middle prepare the main course, and the ones closest to the Final Destination the dessert.
         Consequently, all teams of the Running Dinner are close to each other after the dessert, making it easy to meet for a drink afterwards.
-        Additionally, **all necessary information** (address, e-mail, phonenumber) of both team members are included in the participants list.
+        Additionally, **all necessary information** (**address**, **e-mail**, **phonenumber**) of both team members are included in the participants list.
         """)
          
         hide_dataframe_row_index = """
@@ -429,8 +429,7 @@ else:
             st.subheader(""" ❌ Wrong Address:
             """)
             st.write(""" Here you can find a list of **all people that did not type in their address correctly**.
-            First, contact those participants privately, verify their address and try to adapt it in a way (Spreadsheet linked below) that they are included in the algorithm.
-            Here, you can **access the** [Spreadsheet](https://docs.google.com/spreadsheets/d/1C1Q7QQ8ZVhCP1ShHdmds6N2kxr1BX8RUqCeNnt4JEPk/edit?usp=sharing) with the answers from the Running Dinner to **correct the address manually**.
+            Contact those participants privately, verify their address and try to **adapt it manually in the [Spreadsheet](https://docs.google.com/spreadsheets/d/1C1Q7QQ8ZVhCP1ShHdmds6N2kxr1BX8RUqCeNnt4JEPk/edit?usp=sharing)** so that they are included in the algorithm.
             """)
             hide_dataframe_row_index = """
                                             <style>
@@ -455,7 +454,7 @@ else:
         st.subheader(""" 👯‍ Participants List:
         """)
         
-        st.write(f""" Here you can see the participants list of the Final Team {final_team_choice} with all necessary information. 
+        st.write(f""" Here you can see the **participants list of the Final Team {final_team_choice}** with all necessary information. 
         """)
                                 
         st.session_state = output
@@ -486,7 +485,7 @@ else:
         
         st.subheader(""" 🥗 Food Preferences:
         """)
-        st.write(f""" Here you can see the **distribution of different Food Preferenceswithin Final Team {final_team_choice}**. 
+        st.write(f""" Here you can see the **distribution of different Food Preferences within Final Team {final_team_choice}**. 
         """)
         
         data_count = data.groupby("Food choice")["FinalTeam"].count()
@@ -527,8 +526,7 @@ else:
             st.subheader(""" ❌ Wrong Address:
             """)
             st.write(""" Here you can find a list of **all people that did not type in their address correctly**.
-            First, contact those participants privately, verify their address and try to adapt it in a way (Spreadsheet linked below) that they are included in the algorithm.
-            Here, you can **access the** [Spreadsheet](https://docs.google.com/spreadsheets/d/1C1Q7QQ8ZVhCP1ShHdmds6N2kxr1BX8RUqCeNnt4JEPk/edit?usp=sharing) with the answers from the Running Dinner to **correct the address manually**.
+            Contact those participants privately, verify their address and try to **adapt it manually in the [Spreadsheet](https://docs.google.com/spreadsheets/d/1C1Q7QQ8ZVhCP1ShHdmds6N2kxr1BX8RUqCeNnt4JEPk/edit?usp=sharing)** so that they are included in the algorithm.
             """)
            
             hide_dataframe_row_index = """

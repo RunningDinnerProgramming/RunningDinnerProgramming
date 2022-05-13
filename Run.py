@@ -262,7 +262,7 @@ st.subheader(""" 📍 Final Destination:
 
 st.write(""" ❗ Important ❗   
 
-**Please use the following address format** for the final destination:  Streetname <space> Housenumber <space> City 
+**Please use the following address format** for the final destination:  Streetname Housenumber City 
 
 Example: Cais da Viscondessa Lisboa
 """)

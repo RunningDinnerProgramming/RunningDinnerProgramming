@@ -97,7 +97,7 @@ class algorithm:
 
         #set center of map
         #start_location = "Rua do Forno do Tijolo 29D Lisboa"
-        final_location_code = geolocator.geocode(self.start_location)
+        final_location_code = geolocator.geocode(self.final_location)
         final_location_lat_long = (final_location_code.latitude,final_location_code.longitude)
         return final_location_lat_long
     

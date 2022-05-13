@@ -677,12 +677,4 @@ Your Running Dinner Team
             st.sidebar.write("E-Mail send out successfully!")
 
 
-            """
-             if wrong_address.empty == False:
-                number_wait = wrong_address.shape[0]
-                for wait in range(0,number_wait):
-                    for mail_lost in wrong_address["E-Mail"]:                           
-                        msg = EmailMessage()"""
-                        #msg.set_content(f"""Hello {wrong_address["Name"].iloc[wait]},
-     
       

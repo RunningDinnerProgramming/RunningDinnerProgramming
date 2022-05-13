@@ -626,9 +626,10 @@ P.S.: Please check all food preferences and get in touch with each other!
                     msg = EmailMessage()
                     msg.set_content(f"""Hello {name_lost},
 
-Unfortunately did you and your Teammember submit this time to late to this Running Dinner.
+Unfortunately did you and your Teammember submit this time too late to this Running Dinner.
 
-Our Running Dinner Team is more than sorry for this, but hopefully we see you again next time.
+Our Running Dinner Team is more than sorry for this, but hopefully we see you again next time. If you want, you can join with your Teammember at our final destination, which is {final_destination}, to have some drinks after the Running Dinner 😊
+
 
 Best,
 
@@ -656,7 +657,7 @@ Your Running Dinner Team
 
 Unfortunately did you and your Teammember submit an address that is not readable by our Running Dinner Algorythm.
 
-Our Running Dinner Team is more than sorry for this, but hopefully see you again next time.
+Our Running Dinner Team is more than sorry for this, but hopefully see you again next time. If you want, you can join with your Teammember at our final destination, which is {final_destination}, to have some drinks after the Running Dinner 😊
 
 Best,
 
